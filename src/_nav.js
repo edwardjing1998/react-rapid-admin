@@ -220,13 +220,23 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Forms',
+    name: 'Edit',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Form Control',
+        name: 'Users',
         to: '/forms/form-control',
+      },
+      {
+        component: CNavItem,
+        name: 'Daily Message',
+        to: '/base/cards',
+      },
+      {
+        component: CNavItem,
+        name: 'Sys/Pin Configuration',
+        to: '/edit/sys-pin-config',
       },
       {
         component: CNavItem,
