@@ -1,83 +1,116 @@
-import React from 'react'
+import React from 'react';
 import { 
   CCard, 
   CCardBody, 
-  CCardHeader, 
   CCol, 
   CFormSelect, 
   CRow, 
   CFormInput, 
-  CFormCheck
-} from '@coreui/react'
-import { DocsExample } from '../../../components'
+  CFormCheck,
+  CCardHeader
+} from '@coreui/react';
 import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // Import custom styles
 
-const Select = () => {
+const SysPrinGeneral = ({ custType, setCustType, returnStatus, setReturnStatus, destroyStatus, setDestroyStatus }) => {
+
   return (
-    <CRow className="d-flex align-items-stretch"> {/* Ensures equal height for both columns */}
+    <CRow className="d-flex align-items-stretch"> 
 
-      {/* First Column (Full Height) - 5 Dropdowns evenly distributed */}
-      <CCol xs={6} className="d-flex"> {/* Ensures both columns stretch equally */}
-        <CCard className="mb-4 w-100 h-100"> {/* Ensures full height */}
-          <CCardBody className="d-flex flex-column h-100 gap-3"> {/* Allows full height stretch */}
+      {/* First Column - Dropdowns */}
+      <CCol xs={6} className="d-flex">
+        <CCard className="mb-4 w-100 h-100">
 
-            {/* Customer Type */}
-            <div className="d-flex flex-grow-1 align-items-center">
-              <CFormSelect id="customer-type" aria-label="Customer Type">
-                <option>Choose Customer Type</option>
-                <option value="1">Individual</option>
-                <option value="2">Business</option>
-                <option value="3">Other</option>
+        <CCardBody className="d-flex flex-column h-100">
+
+            <label htmlFor="customer-type" className="form-label">
+                Customer Type
+            </label>
+
+              {/* Customer Type */}
+              <CFormSelect
+                id="customer-type"
+                aria-label="Customer Type"
+                value={custType}
+                onChange={(e) => setCustType(e.target.value)}
+                className="mb-4"
+              >
+                <option value=""></option>
+                <option value="TypeA">Customer Type A</option>
+                <option value="TypeB">Customer Type B</option>
+                <option value="TypeC">Customer Type C</option>
               </CFormSelect>
-            </div>
 
-            {/* Return Status */}
-            <div className="d-flex flex-grow-1 align-items-center">
-              <CFormSelect id="return-status" aria-label="Return Status">
-                <option>Choose Return Status</option>
-                <option value="1">Pending</option>
-                <option value="2">Approved</option>
-                <option value="3">Rejected</option>
+
+            <label htmlFor="customer-type" className="form-label">
+                Return Status
+            </label>
+
+              {/* Return Status */}
+              <CFormSelect
+                id="return-status"
+                aria-label="Return Status"
+                value={returnStatus}
+                onChange={(e) => setReturnStatus(e.target.value)}
+                className="mb-4"
+              >
+                <option value=""></option>
+                <option value="Return Status 1">Pending</option>
+                <option value="Return Status 2">Approved</option>
+                <option value="Return Status 3">Rejected</option>
               </CFormSelect>
-            </div>
 
-            {/* Destroy Status */}
-            <div className="d-flex flex-grow-1 align-items-center">
-              <CFormSelect id="destroy-status" aria-label="Destroy Status">
-                <option>Choose Destroy Status</option>
-                <option value="1">Not Destroyed</option>
-                <option value="2">Destroyed</option>
-                <option value="3">In Process</option>
+              <label htmlFor="customer-type" className="form-label">
+                  Destroy Status
+              </label>
+
+              {/* Destroy Status */}
+              <CFormSelect
+                id="destroy-status"
+                aria-label="Destroy Status"
+                value={destroyStatus}
+                onChange={(e) => setDestroyStatus(e.target.value)}
+                className="mb-4"
+              >
+                <option value=""></option>
+                <option value="Destroy Status 1">Not Destroyed</option>
+                <option value="Destroy Status 2">Destroyed</option>
+                <option value="Destroy Status 3">In Process</option>
               </CFormSelect>
-            </div>
 
-            {/* Special */}
-            <div className="d-flex flex-grow-1 align-items-center">
-              <CFormSelect id="special" aria-label="Special">
-                <option>Choose Special Option</option>
+              <label htmlFor="customer-type" className="form-label">
+                 Special Option
+              </label>
+
+              {/* Special */}
+              <CFormSelect id="special" aria-label="Special" className="mb-4">
+                <option></option>
                 <option value="1">Yes</option>
                 <option value="2">No</option>
               </CFormSelect>
-            </div>
 
-            {/* Pin Mailer */}
-            <div className="d-flex flex-grow-1 align-items-center">
-              <CFormSelect id="pin-mailer" aria-label="Pin Mailer">
-                <option>Choose Pin Mailer</option>
+              <label htmlFor="customer-type" className="form-label">
+                 Pin Mailer
+              </label>
+
+              {/* Pin Mailer */}
+              <CFormSelect id="pin-mailer" aria-label="Pin Mailer" className="mb-4">
+                <option></option>
                 <option value="1">Printed</option>
                 <option value="2">Not Printed</option>
               </CFormSelect>
-            </div>
 
-          </CCardBody>
+              </CCardBody>
+
+
         </CCard>
       </CCol>
 
-      {/* Second Column (Two Rows) */}
-      <CCol xs={6} className="d-flex flex-column h-100"> {/* Ensures full height for second column */}
+
+     {/* Second Column - Checkboxes and Inputs */}
+      <CCol xs={6} className="d-flex flex-column h-100"> 
         
-        {/* First Row: 5 Checkboxes (With Background Matching Second Row) */}
-        <CCard className="mb-4 w-100 flex-grow-1"> {/* Matches background of second row */}
+        {/* First Row: Checkboxes */}
+        <CCard className="mb-4 w-100 flex-grow-1">
           <CCardBody className="d-flex flex-column gap-3">
             <CFormCheck type="checkbox" id="sys-prin-active" label="Sys/PRIN Active" />
             <CFormCheck type="checkbox" id="rps-customer" label="RPS Customer" />
@@ -87,12 +120,12 @@ const Select = () => {
           </CCardBody>
         </CCard>
 
-        {/* Second Row: Checkbox and Input Field */}
-        <CCard className="mb-4 w-100 flex-grow-1"> {/* Ensures same height */}
+        {/* Second Row: Inputs */}
+        <CCard className="mb-4 w-100 flex-grow-1">
           <CCardHeader>
             <strong>Options</strong> <small>Additional Settings</small>
           </CCardHeader>
-          <CCardBody className="d-flex flex-column h-100 gap-3"> {/* Allows full height stretch */}
+          <CCardBody className="d-flex flex-column h-100 gap-3">
             
             {/* Checkbox: Active */}
             <CFormCheck type="checkbox" id="active" label="Active" />
@@ -114,8 +147,10 @@ const Select = () => {
 
       </CCol>
 
-    </CRow>
-  )
-}
 
-export default Select
+
+    </CRow>
+  );
+};
+
+export default SysPrinGeneral;

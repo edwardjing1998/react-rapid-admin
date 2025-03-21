@@ -20,7 +20,7 @@ const ClientInformationContent = ({ selectedData }) => {
             <CFormInput
               type="text"
               id="client-id"
-              value={selectedData.clientId}
+              value={selectedData.client}
               placeholder="Client ID"
               readOnly
             />

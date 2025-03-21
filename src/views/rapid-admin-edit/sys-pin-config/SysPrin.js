@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   CRow,
   CCol,
@@ -10,6 +10,8 @@ import {
   CTabList,
   CTabPanel,
   CTabs,
+  CFormInput,
+  CButton,
 } from '@coreui/react'
 import { DocsComponents, DocsExample } from 'src/components'
 import SysPrinGeneral from './SysPrinGeneral.js';
@@ -17,9 +19,55 @@ import ReMailOptions from './ReMailOptions.js';
 import StatusOptions from './StatusOptions.js';
 import Notes from './Notes.js';
 
-const Navs = () => {
+
+const SysPrin = ({selectedClient}) => {
+
+  const storedClient = localStorage.getItem("selectedClient");
+  const [sysPin, setSysPin] = useState('');
+
+  const [custType, setCustType] = useState('');
+  const [returnStatus, setReturnStatus] = useState('');
+  const [destroyStatus, setDestroyStatus] = useState('');
+
+  const sysPrinsData = [
+    {
+      "sysPrin": "SYS001",
+      "client": "CLIENT1",
+      "custType": "TypeA",
+      "returnStatus": "Return Status 1",
+      "destroyStatus": "Destroy Status 1"
+    },
+    {
+      "sysPrin": "SYS002",
+      "client": "CLIENT2",
+      "custType": "TypeB",
+      "returnStatus": "Return Status 2",
+      "destroyStatus": "Destroy Status 2"
+    },
+    {
+      "sysPrin": "SYS003",
+      "client": "CLIENT3",
+      "custType": "TypeC",
+      "returnStatus": "Return Status 3",
+      "destroyStatus": "Destroy Status 3"
+    }
+  ];
+
+  const handleSearch = () => {
+    const result = sysPrinsData.find(item => item.sysPrin === sysPin);
+    if (result) {
+      setCustType(result.custType);
+      setReturnStatus(result.returnStatus);
+      setDestroyStatus(result.destroyStatus);
+    } else {
+      setCustType('');
+      setReturnStatus('');
+      setDestroyStatus('');
+    }
+  };
+
   return (
-    <CRow>
+    <CRow className="justify-content-center align-items-center">
       <CCol xs={12}>
         <DocsComponents href="components/tabs/" />
         <CCard className="mb-4">
@@ -27,10 +75,32 @@ const Navs = () => {
             <strong>React Tabs</strong>
           </CCardHeader>
           <CCardBody>
-            <p className="text-body-secondary small">
-              The basic React tabs example uses the <code>variant=&#34;tabs&#34;</code> props to
-              generate a tabbed interface.
-            </p>
+
+
+            {/* Input Field with Title and Button */}
+            <div className="d-flex align-items-center justify-content-center gap-3 mb-4">
+
+            {/* ✅ Added new input field for Selected Client ID */}
+             <strong>Selected Client Id:</strong>
+              <CFormInput 
+                type="text" 
+                placeholder="Selected Client Id" 
+                className="w-50 text-center"
+                value={storedClient || ''}  // ✅ Display selectedClient
+                readOnly
+              />
+
+              <strong>Input Sys/Pin:</strong>
+              <CFormInput 
+                type="text" 
+                placeholder="Enter Sys/Pin here..." 
+                className="w-50 text-center"
+                value={sysPin}
+                onChange={(e) => setSysPin(e.target.value)}
+              />
+              <CButton color="primary" onClick={handleSearch}>Submit</CButton>
+            </div>
+
             <DocsExample href="components/tabs/#example">
               <CTabs activeItemKey="general">
                 <CTabList variant="pills">
@@ -43,7 +113,14 @@ const Navs = () => {
                 </CTabList>
                 <CTabContent>
                   <CTabPanel className="p-3" itemKey="general">
-                    <SysPrinGeneral />
+                    <SysPrinGeneral 
+                      custType={custType} 
+                      setCustType={setCustType}
+                      returnStatus={returnStatus} 
+                      setReturnStatus={setReturnStatus}
+                      destroyStatus={destroyStatus} 
+                      setDestroyStatus={setDestroyStatus}
+                    />
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="re-mail-options">
                     <ReMailOptions />
@@ -55,10 +132,10 @@ const Navs = () => {
                     <Notes />
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="file-sent-to">
-                  File Sent to Options
+                    File Sent to Options
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="file-recived-from">
-                  File Sent from   tab content
+                    File Sent from tab content
                   </CTabPanel>
                 </CTabContent>
               </CTabs>
@@ -70,4 +147,4 @@ const Navs = () => {
   )
 }
 
-export default Navs
+export default SysPrin;

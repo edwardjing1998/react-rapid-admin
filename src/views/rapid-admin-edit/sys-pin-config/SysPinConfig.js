@@ -19,9 +19,9 @@ import SysPrin from './SysPrin.js';
 
 
 
-const Navs = () => {
+const SysPinConfig = () => {
   const [selectedData, setSelectedData] = useState({
-    clientId: '',
+    client: '',
     name: '',
     address: ''
   });
@@ -69,4 +69,4 @@ const Navs = () => {
   );
 };
 
-export default Navs;
+export default SysPinConfig;

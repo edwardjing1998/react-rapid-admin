@@ -12,76 +12,133 @@ import {
   CTableHeaderCell,
   CTableRow,
   CPagination,
-  CPaginationItem
+  CPaginationItem,
+  CFormInput,
+  CFormCheck
 } from '@coreui/react';
 import '../../../scss/sys-prin-configuration/client-information.scss'; // Import external CSS file
 
-const Tables = ({ onRowClick }) => {
+
+const ClientInformation = ({ onRowClick }) => {
+
   const [tableData, setTableData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedRowId, setSelectedRowId] = useState(null); // Track selected row
+  const [selectedRowId, setSelectedRowId] = useState(null);
   const itemsPerPage = 5;
 
+  // Sorting state
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+
+  // Search state
+  const [searchTerm, setSearchTerm] = useState('');
+  
+
   useEffect(() => {
-    // Simulate fetching JSON data
+    // Fetching JSON data
     const fetchData = async () => {
-      const jsonData = [
-        { id: 1, clientId: '001', name: 'Mark Otto', address: '123 Main St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: true, billingSysPin: "billingSysPin 1", zip: 19404 },
-        { id: 2, clientId: '002', name: 'Jacob Thornton', address: '456 Elm St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: true, billingSysPin: "billingSysPin 2", zip: 19405},
-        { id: 3, clientId: '003', name: 'Larry Bird', address: '789 Oak St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: false, billingSysPin: "billingSysPin 3", zip: 19406  },
-        { id: 4, clientId: '004', name: 'John Doe', address: '321 Pine St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: false, billingSysPin: "billingSysPin 4" , zip: 19407  },
-        { id: 5, clientId: '005', name: 'Jane Smith', address: '654 Cedar St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: true, billingSysPin: "billingSysPin 5" , zip: 19408   },
-        { id: 6, clientId: '006', name: 'Alice Johnson', address: '987 Birch St', state: 'New Jersey', city: 'Jersey City', phone: '415-677-3255', contact: 'Johone Bill', active: true, billingSysPin: "billingSysPin 6", zip: 19409  }
+      const clientData = [
+        { client: "CLIENT1", name: "Alpha Corp", address: "123 Main St", city: "New York", state: "NY", zip: "10001", contact: "John Doe", phone: "123-456-7890", active: true },
+        { client: "CLIENT2", name: "Beta Inc", address: "456 Elm St", city: "Los Angeles", state: "CA", zip: "90001", contact: "Jane Smith", phone: "234-567-8901", active: false },
+        { client: "CLIENT3", name: "Gamma Ltd", address: "789 Oak St", city: "Chicago", state: "IL", zip: "60601", contact: "Alice Brown", phone: "345-678-9012", active: false },
+        { client: "CLIENT4", name: "Delta LLC", address: "321 Pine St", city: "Houston", state: "TX", zip: "77001", contact: "Robert Johnson", phone: "456-789-0123", active: true },
+        { client: "CLIENT5", name: "Epsilon Enterprises", address: "654 Cedar St", city: "Phoenix", state: "AZ", zip: "85001", contact: "Michael Wilson", phone: "567-890-1234", active: false },
+        { client: "CLIENT6", name: "Zeta Solutions", address: "987 Birch St", city: "Philadelphia", state: "PA", zip: "19101", contact: "Emily Davis", phone: "678-901-2345", active: true },
       ];
-      setTableData(jsonData);
+
+      setTableData(clientData);
     };
 
     fetchData();
   }, []);
 
-  // Calculate indexes for slicing data
+  // Sorting Function
+  const handleSort = (key) => {
+    let direction = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
+
+    const sortedData = [...tableData].sort((a, b) => {
+      if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+
+    setTableData(sortedData);
+  };
+
+  // Search Filter
+  const filteredData = tableData.filter(row =>
+    row.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    row.address.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Pagination Calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tableData.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(tableData.length / itemsPerPage);
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  // Handle row click
-  const handleRowClick = (row) => {
-    setSelectedRowId(row.id);
-    onRowClick(row);
-  };
+    // Handle Row Click
+    const handleRowClick = (row) => {
+      setSelectedRowId(row.client);
+      localStorage.setItem("selectedClient", row.client); // Save to localStorage  
+      const storedClient = localStorage.getItem("selectedClient");
+      onRowClick(row);
+    };
 
   return (
     <>
-      {/* Existing Table */}
       <CRow>
         <CCol xs={12}>
           <CCard className="mb-4">
-          <CCardHeader style={{ backgroundColor: '#8A2BE2', color: 'white' }}> {/* Violet */}
-             <strong>Sys Prins Clients</strong>
-          </CCardHeader>
+            <CCardHeader style={{ backgroundColor: '#8A2BE2', color: 'white' }}>
+              <strong>Sys Prins Clients</strong>
+            </CCardHeader>
 
             <CCardBody>
+              {/* Search Input */}
+              <CFormInput
+                type="text"
+                placeholder="Search by Client ID, Name, Address..."
+                className="mb-3"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+
+              {/* Table */}
               <CTable hover className="table">
                 <CTableHead>
                   <CTableRow>
                     <CTableHeaderCell style={{ backgroundColor: '#E6E6FA' }}>#</CTableHeaderCell>
-                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA' }}>Client ID</CTableHeaderCell>
-                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA' }}>Name</CTableHeaderCell>
-                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA' }}>Address</CTableHeaderCell>
+                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA', cursor: 'pointer' }} onClick={() => handleSort('client')}>
+                      Client ID {sortConfig.key === 'client' ? (sortConfig.direction === 'asc' ? '⬆' : '⬇') : ''}
+                    </CTableHeaderCell>
+                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA', cursor: 'pointer' }} onClick={() => handleSort('name')}>
+                      Name {sortConfig.key === 'name' ? (sortConfig.direction === 'asc' ? '⬆' : '⬇') : ''}
+                    </CTableHeaderCell>
+                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA', cursor: 'pointer' }} onClick={() => handleSort('address')}>
+                      Address {sortConfig.key === 'address' ? (sortConfig.direction === 'asc' ? '⬆' : '⬇') : ''}
+                    </CTableHeaderCell>
+                    <CTableHeaderCell style={{ backgroundColor: '#E6E6FA' }}>Status</CTableHeaderCell> {/* New Column */}
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  {currentItems.map((row) => (
+                  {currentItems.map((row, index) => (
                     <CTableRow
-                      key={row.id}
-                      className={`table-row ${selectedRowId === row.id ? 'active-row' : ''}`} // Apply class when active
+                      key={row.client}
+                      className={`table-row ${selectedRowId === row.client ? 'active-row' : ''}`}
                       onClick={() => handleRowClick(row)}
                     >
-                      <CTableHeaderCell>{row.id}</CTableHeaderCell>
-                      <CTableDataCell>{row.clientId}</CTableDataCell>
+                      <CTableHeaderCell>{index + 1 + indexOfFirstItem}</CTableHeaderCell>
+                      <CTableDataCell>{row.client}</CTableDataCell>
                       <CTableDataCell>{row.name}</CTableDataCell>
                       <CTableDataCell>{row.address}</CTableDataCell>
+                      <CTableDataCell>
+                        <CFormCheck checked={row.active} disabled /> {/* Checkbox for Status */}
+                      </CTableDataCell>
                     </CTableRow>
                   ))}
                 </CTableBody>
@@ -122,4 +179,4 @@ const Tables = ({ onRowClick }) => {
   );
 };
 
-export default Tables;
+export default ClientInformation;
