@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import { 
   CCard, 
   CCardBody, 
@@ -12,57 +13,112 @@ import {
 import { DocsExample } from '../../../components'
 import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // Import custom styles
 
-const Select = () => {
+
+const ReMailOptions = ({ nonUS, setNonUS, poBox, setPoBox, undeliverable, setUndeliverable, badState, setBadState, tempAwayAtts, setTempAwayAtts, tempAway, setTempAway }) => {
+
+
+  useEffect(() => {
+    console.log("ReMailOptions received undeliverable:", undeliverable); // Debugging
+  }, [undeliverable]); // Runs whenever `nonUS` updates
+
+
   return (
-    <CRow className="d-flex justify-content-between align-items-stretch"> {/* Ensures equal height */}
+    <CRow className="d-flex justify-content-between align-items-stretch h-100"> {/* Ensures equal height */}
 
       {/* Left Column: Evenly Distributed Text Fields and Select Boxes */}
-      <CCol xs={6} className="d-flex justify-content-start">
-        <CCard className="mb-4 w-100 h-100 d-flex"> {/* Ensures same height */}
+      <CCol xs={6} className="d-flex justify-content-start h-100">
+       <CCard className="mb-0 w-100 h-100 d-flex"> {/* Ensures same height */}
           <CCardBody className="d-flex flex-column h-100 justify-content-between"> {/* Evenly distributes elements */}
             
             {/* Days to Hold Temp Aways */}
             <CFormInput 
               type="text" 
               placeholder="Days to Hold Temp Aways"
+              value={tempAwayAtts || ''}
+              onChange={(e) => setTempAwayAtts(e.target.value)}
+              className="mb-4"
             />
 
             {/* Temp Away Re-Mail Trys */}
             <CFormInput 
               type="text" 
               placeholder="Temp Away Re-Mail Trys"
+              value={tempAway || ''}
+              onChange={(e) => setTempAway(e.target.value)}
+              className="mb-4"
             />
 
-            {/* Unable to Deliver */}
-            <CFormSelect aria-label="Unable to Deliver">
-              <option>Unable to Deliver</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+
+            {/* Customer Type */}
+            <CFormSelect
+              id="undeliverable"
+              aria-label="Unable to Deliver"
+              value={undeliverable || ''}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                console.log("🔥 Updating undeliverable to:", newValue);
+                setUndeliverable(newValue);
+              }}
+              className="mb-4"
+            >
+              <option value=""></option>
+              <option value="Return">Return</option>
+              <option value="Destroy">Destroy</option>
+              <option value="In Process">In Process</option>
             </CFormSelect>
 
-            {/* Non U.S. Address */}
-            <CFormSelect aria-label="Non U.S. Address">
-              <option>Non U.S. Address</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+            {/* Customer Type */}
+            <CFormSelect
+              id="non-us"
+              aria-label="Non US"
+              value={nonUS || ''}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                console.log("🔥 Updating nonUS to:", newValue);
+                setNonUS(newValue);
+
+              }}
+              className="mb-4"
+            >
+              <option value="">Choose Option</option>
+              <option value="Return">Return</option>
+              <option value="Destroy">Destroy</option>
+              <option value="In Process">In Process</option>
             </CFormSelect>
 
-            {/* New Address is P.O. Box */}
-            <CFormSelect aria-label="New Address is P.O. Box">
-              <option>New Address is P.O. Box</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+           {/* Customer Type */}
+           <CFormSelect
+              id="po-box"
+              aria-label="New Address is P.O. Box"
+              value={poBox || ''}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                console.log("🔥 Updating poBox to:", newValue);
+                setPoBox(newValue);
+              }}
+              className="mb-4">
+              <option value=""></option>
+              <option value="Return">Return</option>
+              <option value="Destroy">Destroy</option>
+              <option value="In Process">In Process</option>
             </CFormSelect>
 
-            {/* Invalid State */}
-            <CFormSelect aria-label="Invalid State">
-              <option>Invalid State</option>
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+           {/* Customer Type */}
+           <CFormSelect
+              id="bad-state"
+              aria-label="Invalid State"
+              value={badState || ''}
+              onChange={(e) => {
+                const newValue = e.target.value;
+                console.log("🔥 Updating badState to:", newValue);
+                setBadState(newValue);
+              }}
+              className="mb-4"
+            >
+              <option value=""></option>
+              <option value="Return">Return</option>
+              <option value="Destroy">Destroy</option>
+              <option value="In Process">In Process</option>
             </CFormSelect>
 
           </CCardBody>
@@ -71,7 +127,7 @@ const Select = () => {
       
       {/* Right Column: Multiple Select (Decreased Height to Fit 8 Records) */}
       <CCol xs={6} className="d-flex justify-content-end">
-        <CCard className="mb-4 w-100" style={{ height: '400px' }}> {/* Adjusted height */}
+      <CCard className="mb-0 w-100 h-100">
           <CCardBody className="d-flex flex-column h-100"> {/* Allows full height stretch */}
             <p className="text-body-secondary small">
               The <code>multiple</code> attribute is also supported:
@@ -125,4 +181,4 @@ const Select = () => {
   )
 }
 
-export default Select
+export default ReMailOptions

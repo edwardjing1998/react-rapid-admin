@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const ArchiveDashboard = React.lazy(() => import('./views/dashboard/ArchiveDashboard'))
+
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -52,12 +54,14 @@ const Toasts = React.lazy(() => import('./views/notifications/toasts/Toasts'))
 const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 // Rapid Admin -> Edit
-const SysPinConfig = React.lazy(() => import('./views/rapid-admin-edit/sys-pin-config/SysPinConfig'))
+const SysPrinConfig = React.lazy(() => import('./views/rapid-admin-edit/sys-pin-config/SysPrinConfig'))
 
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/archive-dashboard', name: 'ArchiveDashboard', element: ArchiveDashboard },
+
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/theme/typography', name: 'Typography', element: Typography },
@@ -103,7 +107,7 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
 
   // Edit
-  { path: '/edit/sys-pin-config', name: 'SysPinConfig', element: SysPinConfig },
+  { path: '/edit/sys-prin-config', name: 'SysPrinConfig', element: SysPrinConfig },
 
 ]
 

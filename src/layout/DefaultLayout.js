@@ -1,7 +1,17 @@
 import React from 'react'
+import { useLocation, Navigate } from 'react-router-dom'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
 
 const DefaultLayout = () => {
+
+  const location = useLocation()
+
+  // Redirect to ArchiveDashboard if the archive system path is active
+  if (location.pathname === '/navigation/archiveSystem') {
+    return <Navigate to="/archive-dashboard" replace />
+  }
+
+
   return (
     <div>
       <AppSidebar />

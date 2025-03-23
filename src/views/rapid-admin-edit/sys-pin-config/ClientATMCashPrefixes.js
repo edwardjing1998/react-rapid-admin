@@ -22,7 +22,7 @@ const Select = () => {
         <CCard className="mb-4 w-100 h-100"> {/* Ensures same height */}
           <CCardBody className="d-flex flex-column h-100"> {/* Allows full height stretch */}
             <p className="text-body-secondary small" style={{ fontSize: '0.97rem' }}>  {/* Set font size */}
-              <span>Billing Sys/Pin: <code>123456789</code></span>
+              <span>Billing Sys/Prin: <code>123456789</code></span>
             </p>
             
             {/* Set full height */}

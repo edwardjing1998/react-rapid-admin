@@ -11,146 +11,503 @@ import {
 } from '@coreui/react';
 import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // Import custom styles
 
-const SysPrinGeneral = ({ custType, setCustType, returnStatus, setReturnStatus, destroyStatus, setDestroyStatus }) => {
+      const SysPrinGeneral = ({
+        custType,
+        setCustType,
+        returnStatus,
+        setReturnStatus,
+        destroyStatus,
+        setDestroyStatus,
+        nm13,
+        setNm13,
+        active,
+        setActive,
+        addrFlag,
+        setAddrFlag,
+        rsp,
+        setRsp,
+        astatRch,
+        setAstatRch
+      }) => {
 
-  return (
-    <CRow className="d-flex align-items-stretch"> 
+    return (
+      <CRow className="d-flex align-items-stretch"> 
 
-      {/* First Column - Dropdowns */}
-      <CCol xs={6} className="d-flex">
-        <CCard className="mb-4 w-100 h-100">
+        {/* First Column - Dropdowns */}
+        <CCol xs={6} className="d-flex">
+          <CCard className="mb-4 w-100 h-100" >
 
-        <CCardBody className="d-flex flex-column h-100">
+          <CCardBody className="d-flex flex-column h-100">
 
-            <label htmlFor="customer-type" className="form-label">
-                Customer Type
-            </label>
-
-              {/* Customer Type */}
-              <CFormSelect
-                id="customer-type"
-                aria-label="Customer Type"
-                value={custType}
-                onChange={(e) => setCustType(e.target.value)}
-                className="mb-4"
-              >
-                <option value=""></option>
-                <option value="TypeA">Customer Type A</option>
-                <option value="TypeB">Customer Type B</option>
-                <option value="TypeC">Customer Type C</option>
-              </CFormSelect>
-
-
-            <label htmlFor="customer-type" className="form-label">
-                Return Status
-            </label>
-
-              {/* Return Status */}
-              <CFormSelect
-                id="return-status"
-                aria-label="Return Status"
-                value={returnStatus}
-                onChange={(e) => setReturnStatus(e.target.value)}
-                className="mb-4"
-              >
-                <option value=""></option>
-                <option value="Return Status 1">Pending</option>
-                <option value="Return Status 2">Approved</option>
-                <option value="Return Status 3">Rejected</option>
-              </CFormSelect>
-
-              <label htmlFor="customer-type" className="form-label">
-                  Destroy Status
+          <div className="d-flex align-items-start mb-4">
+              <label htmlFor="customer-type" className="form-label me-3 mb-0"   style={{
+                  width: '200px',
+                  height: '38px',
+                  padding: '6px 10px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  color: '#4B0082',
+                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                  fontFamily: 'Segoe UI, sans-serif',
+                  textAlign: 'left',
+                  fontSize: '0.95rem',
+                  lineHeight: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                Customer Type:
               </label>
 
-              {/* Destroy Status */}
-              <CFormSelect
-                id="destroy-status"
-                aria-label="Destroy Status"
-                value={destroyStatus}
-                onChange={(e) => setDestroyStatus(e.target.value)}
-                className="mb-4"
-              >
-                <option value=""></option>
-                <option value="Destroy Status 1">Not Destroyed</option>
-                <option value="Destroy Status 2">Destroyed</option>
-                <option value="Destroy Status 3">In Process</option>
-              </CFormSelect>
+                {/* Customer Type */}
+                <CFormSelect
+                  id="customer-type"
+                  aria-label="Customer Type"
+                  value={custType}
+                  onChange={(e) => setCustType(e.target.value)}
+                  className="mb-4"
+                  style={{
+                    fontSize: '0.95rem',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: '500',
+                  }}
+                >
+                  <option value=""></option>
+                  <option value="TypeA">Customer Type A</option>
+                  <option value="TypeB">Customer Type B</option>
+                  <option value="TypeC">Customer Type C</option>
+                </CFormSelect>
+           </div>
 
-              <label htmlFor="customer-type" className="form-label">
-                 Special Option
+           <div className="d-flex align-items-start mb-4">
+              <label htmlFor="return-status" className="form-label me-3 mb-0" style={{
+                 width: '200px',
+                 height: '38px',
+                 padding: '6px 10px',
+                 borderRadius: '8px',
+                 fontWeight: '500',
+                 color: '#4B0082',
+                 boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                 fontFamily: 'Segoe UI, sans-serif',
+                 textAlign: 'left',
+                 fontSize: '0.95rem',
+                 lineHeight: '1',
+                 display: 'flex',
+                 alignItems: 'center',
+                }}>
+                  Return Status:
               </label>
 
-              {/* Special */}
-              <CFormSelect id="special" aria-label="Special" className="mb-4">
-                <option></option>
-                <option value="1">Yes</option>
-                <option value="2">No</option>
-              </CFormSelect>
+                {/* Return Status */}
+                <CFormSelect
+                  id="return-status"
+                  aria-label="Return Status"
+                  value={returnStatus}
+                  onChange={(e) => setReturnStatus(e.target.value)}
+                  className="mb-4"
+                  style={{
+                    fontSize: '0.95rem',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: '500',
+                  }}
+                >
+                  <option value=""></option>
+                  <option value="Return Status 1">Pending</option>
+                  <option value="Return Status 2">Approved</option>
+                  <option value="Return Status 3">Rejected</option>
+                </CFormSelect>
+            </div>
 
-              <label htmlFor="customer-type" className="form-label">
-                 Pin Mailer
-              </label>
+            <div className="d-flex align-items-start mb-4">
+              <label htmlFor="destroy-status" className="form-label me-3 mb-0" style={{
+                  width: '200px',
+                  height: '38px',
+                  padding: '6px 10px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  color: '#4B0082',
+                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                  fontFamily: 'Segoe UI, sans-serif',
+                  textAlign: 'left',
+                  fontSize: '0.95rem',
+                  lineHeight: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                    Destroy Status:
+                </label>
 
-              {/* Pin Mailer */}
-              <CFormSelect id="pin-mailer" aria-label="Pin Mailer" className="mb-4">
-                <option></option>
-                <option value="1">Printed</option>
-                <option value="2">Not Printed</option>
-              </CFormSelect>
+                {/* Destroy Status */}
+                <CFormSelect
+                  id="destroy-status"
+                  aria-label="Destroy Status"
+                  value={destroyStatus}
+                  onChange={(e) => setDestroyStatus(e.target.value)}
+                  className="mb-4"
+                  style={{
+                    fontSize: '0.95rem',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: '500',
+                  }}
+                >
+                  <option value=""></option>
+                  <option value="Destroy Status 1">Not Destroyed</option>
+                  <option value="Destroy Status 2">Destroyed</option>
+                  <option value="Destroy Status 3">In Process</option>
+                </CFormSelect>
+            </div>
 
-              </CCardBody>
+            <div className="d-flex align-items-start mb-4">
+              <label htmlFor="special-option" className="form-label me-3 mb-0" style={{
+                  width: '200px',
+                  height: '38px',
+                  padding: '6px 10px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  color: '#4B0082',
+                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                  fontFamily: 'Segoe UI, sans-serif',
+                  textAlign: 'left',
+                  fontSize: '0.95rem',
+                  lineHeight: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  Special Option:
+                </label>
 
+                {/* Special */}
+                <CFormSelect id="special-option" aria-label="Special" className="mb-4"
+                  style={{
+                    fontSize: '0.95rem',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: '500',
+                  }}>
+                  <option></option>
+                  <option value="1">Yes</option>
+                  <option value="2">No</option>
+                </CFormSelect>
+              </div>
 
-        </CCard>
-      </CCol>
+              <div className="d-flex align-items-start mb-4">
+              <label htmlFor="special-option" className="form-label me-3 mb-0" style={{
+                   width: '200px',
+                  height: '38px',
+                  padding: '6px 10px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  color: '#4B0082',
+                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                  fontFamily: 'Segoe UI, sans-serif',
+                  textAlign: 'left',
+                  fontSize: '0.95rem',
+                  lineHeight: '1',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  Pin Mailer:
+                </label>
 
+                {/* Pin Mailer */}
+                <CFormSelect id="pin-mailer" aria-label="Pin Mailer" className="mb-4" style={{
+                    fontSize: '0.95rem',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    fontWeight: '500',
+                  }}>
+                  <option></option>
+                  <option value="1">Printed</option>
+                  <option value="2">Not Printed</option>
+                </CFormSelect>
+                </div>
+            </CCardBody>
+          </CCard>
+        </CCol>
 
-     {/* Second Column - Checkboxes and Inputs */}
-      <CCol xs={6} className="d-flex flex-column h-100"> 
-        
-        {/* First Row: Checkboxes */}
-        <CCard className="mb-4 w-100 flex-grow-1">
-          <CCardBody className="d-flex flex-column gap-3">
-            <CFormCheck type="checkbox" id="sys-prin-active" label="Sys/PRIN Active" />
-            <CFormCheck type="checkbox" id="rps-customer" label="RPS Customer" />
-            <CFormCheck type="checkbox" id="flag-undeliverable" label="Flag Undeliverable a Invalid Address" />
-            <CFormCheck type="checkbox" id="status-research" label="A Status accounts going in Research" />
-            <CFormCheck type="checkbox" id="perform-non-mon" label="Perform Non Mon 13 on Destroy" />
-          </CCardBody>
-        </CCard>
+        {/* Second Column - Checkboxes and Inputs */}
+        <CCol xs={6} className="d-flex">
+          <CCard className="mb-4 w-100 h-100">
+            <CCardBody className="d-flex flex-column h-100 justify-content-between">
+              <div className="d-flex flex-column gap-2 mb-4">
 
-        {/* Second Row: Inputs */}
-        <CCard className="mb-4 w-100 flex-grow-1">
-          <CCardHeader>
-            <strong>Options</strong> <small>Additional Settings</small>
-          </CCardHeader>
-          <CCardBody className="d-flex flex-column h-100 gap-3">
-            
-            {/* Checkbox: Active */}
-            <CFormCheck type="checkbox" id="active" label="Active" />
+              <CFormCheck
+                type="checkbox"
+                id="sys-prin-active"
+                className="d-flex align-items-center"
+                label={
+                  <span style={{
+                    marginLeft: '30px',
+                    width: '200px',
+                    height: '38px',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    color: '#4B0082',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    Sys/PRIN Active
+                  </span>
+                }
+                checked={active === 'Y'}
+                onChange={(e) => setActive(e.target.checked ? 'Y' : 'N')}
+              />
 
-            {/* Text Input: Memo Type */}
-            <CFormInput 
-              type="text" 
-              placeholder="Memo Type" 
-            />
+              <CFormCheck
+                type="checkbox"
+                id="rps-customer"
+                className="d-flex align-items-center"
+                label={
+                  <span style={{
+                    marginLeft: '30px',
+                    width: '200px',
+                    height: '38px',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    color: '#4B0082',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    RPS Customer
+                  </span>
+                }
+                checked={rsp === 'Y'}
+                onChange={(e) => setRsp(e.target.checked ? 'Y' : 'N')}
+              />
 
-            {/* Text Input: Filter ID */}
-            <CFormInput 
-              type="text" 
-              placeholder="Filter ID" 
-            />
-            
-          </CCardBody>
-        </CCard>
+              <CFormCheck
+                type="checkbox"
+                id="flag-undeliverable"
+                className="d-flex align-items-center"
+                label={
+                  <span style={{
+                    marginLeft: '30px',
+                    width: '300px',
+                    height: '38px',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    color: '#4B0082',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    Flag Undeliverable an Invalid Address
+                  </span>
+                }
+                checked={addrFlag === 'Invalid'}
+                onChange={(e) => setAddrFlag(e.target.checked ? 'Invalid' : 'Valid')}
+              />
 
-      </CCol>
+              <CFormCheck
+                type="checkbox"
+                id="status-research"
+                className="d-flex align-items-center"
+                label={
+                  <span style={{
+                    marginLeft: '30px',
+                    width: '300px',
+                    height: '38px',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    color: '#4B0082',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    A Status accounts going in Research
+                  </span>
+                }
+                checked={astatRch === 'Y'}
+                onChange={(e) => setAstatRch(e.target.checked ? 'Y' : 'N')}
+              />
 
+              <CFormCheck
+                type="checkbox"
+                id="perform-non-mon"
+                className="d-flex align-items-center"
+                label={
+                  <span style={{
+                    marginLeft: '30px',
+                    width: '250px',
+                    height: '38px',
+                    padding: '6px 10px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    color: '#4B0082',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                    fontFamily: 'Segoe UI, sans-serif',
+                    textAlign: 'left',
+                    fontSize: '0.95rem',
+                    lineHeight: '1',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    Perform Non Mon 13 on Destroy
+                  </span>
+                }
+                checked={nm13 === 'Y'}
+                onChange={(e) => setNm13(e.target.checked ? 'Y' : 'N')}
+              />               
+              </div>
 
+                   <>
+                  {/* 🔼 Your form section moved to the top */}
+                  <div className="d-flex flex-column gap-2 mb-4">
+                    <label
+                      style={{
+                        backgroundColor: '#E6E6FA',
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        fontWeight: '600',
+                        fontSize: '1rem',
+                        color: '#4B0082',
+                        fontFamily: 'Segoe UI, sans-serif',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)',
+                        display: 'inline-block',
+                        marginBottom: '10px'
+                      }}
+                    >
+                      Chronicle Memo Options
+                    </label>
 
-    </CRow>
-  );
-};
+                    {/* Active checkbox */}
+                    <CFormCheck
+                      type="checkbox"
+                      id="active"
+                      className="d-flex align-items-center"
+                      label={
+                        <span style={{
+                          marginLeft: '30px',
+                          width: '250px',
+                          height: '38px',
+                          padding: '6px 10px',
+                          borderRadius: '8px',
+                          fontWeight: '500',
+                          color: '#4B0082',
+                          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                          fontFamily: 'Segoe UI, sans-serif',
+                          textAlign: 'left',
+                          fontSize: '0.95rem',
+                          lineHeight: '1',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                          Active
+                        </span>
+                      }
+                    />
+
+                    {/* Memo Type input */}
+                    <div className="d-flex align-items-center mb-3">
+                      <label htmlFor="memo-type" className="form-label mb-0 me-3" style={{
+                        width: '130px',
+                        height: '38px',
+                        padding: '6px 10px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        color: '#4B0082',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                        fontFamily: 'Segoe UI, sans-serif',
+                        textAlign: 'left',
+                        fontSize: '0.95rem',
+                        lineHeight: '1',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                        Memo Type:
+                      </label>
+                      <CFormInput
+                        type="text"
+                        id="memo-type"
+                        style={{
+                          width: '300px',
+                          height: '38px',
+                          padding: '6px 10px',
+                          borderRadius: '8px',
+                          fontWeight: '500',
+                          color: '#4B0082',
+                          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                          fontFamily: 'Segoe UI, sans-serif',
+                          textAlign: 'left',
+                          fontSize: '0.95rem',
+                          lineHeight: '1',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                      />
+                    </div>
+
+                    {/* Filter ID input */}
+                    <div className="d-flex align-items-center mb-3">
+                      <label htmlFor="filter-id" className="form-label mb-0 me-3" style={{
+                        width: '130px',
+                        height: '38px',
+                        padding: '6px 10px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        color: '#4B0082',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                        fontFamily: 'Segoe UI, sans-serif',
+                        textAlign: 'left',
+                        fontSize: '0.95rem',
+                        lineHeight: '1',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                        Filter ID:
+                      </label>
+                      <CFormInput
+                        type="text"
+                        id="filter-id"
+                        style={{
+                          width: '300px',
+                          height: '38px',
+                          padding: '6px 10px',
+                          borderRadius: '8px',
+                          fontWeight: '500',
+                          color: '#4B0082',
+                          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
+                          fontFamily: 'Segoe UI, sans-serif',
+                          textAlign: 'left',
+                          fontSize: '0.95rem',
+                          lineHeight: '1',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* ⬇️ Your layout remains unchanged */}
+                  <CRow className="d-flex align-items-stretch">
+                    {/* First and second column here */}
+                  </CRow>
+                </>
+
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+    );
+  };
 
 export default SysPrinGeneral;

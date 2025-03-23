@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 
 import {
@@ -51,10 +51,14 @@ import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 import WidgetsBrand from '../widgets/WidgetsBrand'
-import WidgetsDropdown from '../widgets/WidgetsDropdown'
-import MainChart from './MainChart'
+import TransactionChart from './TransactionChart'
+import ArchiveCasesChart from './ArchiveCasesChart'
+
 
 const Dashboard = () => {
+   
+  const [selectedView, setSelectedView] = useState('Transactions')
+
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
     { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
@@ -178,35 +182,38 @@ const Dashboard = () => {
 
   return (
     <>
-      <WidgetsDropdown className="mb-4" />
+      {/* <WidgetsDropdown className="mb-4" /> */}
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
             <CCol sm={5}>
-              <h4 id="traffic" className="card-title mb-0">
+              {/* <h4 id="traffic" className="card-title mb-0">
                 Traffic
               </h4>
-              <div className="small text-body-secondary">January - July 2023</div>
+              <div className="small text-body-secondary">January - July 2023</div> */}
             </CCol>
+            
             <CCol sm={7} className="d-none d-md-block">
               <CButton color="primary" className="float-end">
                 <CIcon icon={cilCloudDownload} />
               </CButton>
               <CButtonGroup className="float-end me-3">
-                {['Day', 'Month', 'Year'].map((value) => (
-                  <CButton
-                    color="outline-secondary"
-                    key={value}
-                    className="mx-0"
-                    active={value === 'Month'}
-                  >
-                    {value}
-                  </CButton>
-                ))}
+                  {['Transactions', 'Cases', 'Clients'].map((value) => (
+                    <CButton
+                      color="outline-secondary"
+                      key={value}
+                      className="mx-0"
+                      active={value === selectedView}
+                      onClick={() => setSelectedView(value)}
+                    >
+                      {value}
+                    </CButton>
+                  ))}
               </CButtonGroup>
+
             </CCol>
           </CRow>
-          <MainChart />
+            {selectedView === 'Cases' ? <ArchiveCasesChart /> : <TransactionChart />}
         </CCardBody>
         <CCardFooter>
           <CRow

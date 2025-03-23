@@ -79,14 +79,14 @@ const ClientInformationContent = ({ selectedData }) => {
           </div>
         </CCol>
 
-        {/* Billing Sys/Pin - Moved to Fifth Row of Second Column */}
+        {/* Billing Sys/Prin - Moved to Fifth Row of Second Column */}
         <CCol xs={12} md={6}>
           <div className="mb-3">
             <CFormInput
               type="text"
               id="billing-sys"
               value={selectedData.billingSysPin}
-              placeholder="Billing Sys/Pin"
+              placeholder="Billing Sys/Prin"
               readOnly
             />
           </div>
@@ -131,7 +131,7 @@ const ClientInformationContent = ({ selectedData }) => {
           </div>
         </CCol>
 
-        {/* Client Active Checkbox - Switched with Billing Sys/Pin */}
+        {/* Client Active Checkbox - Switched with Billing Sys/Prin */}
         <CCol xs={12} md={6} className="d-flex align-items-center client-active-row">
           <div className="mb-3">
             <CFormCheck

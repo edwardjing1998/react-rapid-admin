@@ -45,7 +45,7 @@ import './scss/navigation.scss'; // Import custom styles
 
 
 
-const _nav = [
+const _archiveNav = [
   {
     component: CNavItem,
     name: 'Dashboard',
@@ -66,7 +66,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Connect Rapid3 Aechive',
-    to: '/navigation/archiveSystem',
+    to: '/theme/colors',
     icon: <CIcon icon={cilLink} customClassName="nav-icon" />,
   },
   {
@@ -84,7 +84,7 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Global Settings',
+    name: 'Global Settings AAAAA',
     to: '/theme/colors',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
@@ -656,4 +656,4 @@ const _nav = [
   },
 ]
 
-export default _nav
+export default _archiveNav
