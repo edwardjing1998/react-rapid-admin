@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import classNames from 'classnames'
 import { CCard, CCardBody, CCardHeader, CCol, CProgress, CRow } from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
+import { CChartLine, CChartBar } from '@coreui/react-chartjs'
 import { getStyle } from '@coreui/utils'
 
 const TransactionChart = () => {
@@ -80,13 +79,13 @@ const TransactionChart = () => {
   }
 
   const progressGroupExample1 = [
-    { title: 'Monday', value1: 34, value2: 78, value3: 77},
-    { title: 'Tuesday', value1: 56, value2: 94, value3: 47 },
-    { title: 'Wednesday', value1: 12, value2: 67, value3: 37 },
-    { title: 'Thursday', value1: 43, value2: 91, value3: 67 },
-    { title: 'Friday', value1: 22, value2: 73, value3: 48 },
+    { title: 'Monday', value1: 66, value2: 78, value3: 200},
+    { title: 'Tuesday', value1: 56, value2: 150, value3: 140 },
+    { title: 'Wednesday', value1: 68, value2: 67, value3: 120 },
+    { title: 'Thursday', value1: 43, value2: 91, value3: 80 },
+    { title: 'Friday', value1: 100, value2: 140, value3: 200 },
     { title: 'Saturday', value1: 53, value2: 82, value3: 99 },
-    { title: 'Sunday', value1: 9, value2: 69, value3: 66 },
+    { title: 'Sunday', value1: 88, value2: 69, value3: 66 },
   ]
 
   const progressGroupExample2 = [
@@ -108,42 +107,59 @@ const TransactionChart = () => {
           <CCard>
             <CCardHeader>Transaction Type</CCardHeader>
             <CCardBody>
-              <CChartLine
-                ref={chartRef1}
-                style={{ height: '300px' }}
-                data={{
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: 'Type 1',
-                      backgroundColor: `rgba(${getStyle('--cui-info-rgb')}, .1)`,
-                      borderColor: getStyle('--cui-info'),
-                      pointHoverBackgroundColor: getStyle('--cui-info'),
-                      borderWidth: 2,
-                      data: Array(9).fill().map(() => random()),
-                      fill: true,
+              <CChartBar
+                  data={{
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                    datasets: [
+                      {
+                        label: 'Accounts',
+                        backgroundColor: '#64B5F6',
+                        data: [35, 25, 30, 45, 20, 50, 20],
+                      },
+                      {
+                        label: 'Cases',
+                        backgroundColor: '#A5D6A7',
+                        data: [40, 20, 12, 39, 10, 40, 39],
+                      },
+                      {
+                        label: 'Sys/Prin',
+                        backgroundColor: '#FFCA28',
+                        data: [25, 35, 45, 30, 20, 60, 50],
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                      x: {
+                        barPercentage: 0.66,
+                        categoryPercentage: 0.8,
+                      },
                     },
-                    {
-                      label: 'Type 2',
-                      backgroundColor: 'transparent',
-                      borderColor: getStyle('--cui-danger'),
-                      pointHoverBackgroundColor: getStyle('--cui-danger'),
-                      borderWidth: 2,
-                      data: Array(9).fill().map(() => random()),
-                    },
-                    {
-                      label: 'Type 3',
-                      backgroundColor: 'transparent',
-                      borderColor: getStyle('--cui-primary'),
-                      pointHoverBackgroundColor: getStyle('--cui-primary'),
-                      borderWidth: 2,
-                      borderDash: [3, 3],
-                      data: Array(9).fill().map(() => random()),
-                    },
-                  ],
-                }}
-                options={chartOptions}
-              />
+                  }}
+                  style={{ height: '300px' }}
+                />
+              <CRow className="pt-4">
+                <CCol xs={4}>
+                  <div className="border-start border-start-4 border-start-info py-1 px-3 mb-3">
+                    <div className="text-body-secondary text-truncate small">Transaction Type 1</div>
+                    <div className="fs-5 fw-semibold">9,123</div>
+                  </div>
+                </CCol>
+                <CCol xs={4}>
+                  <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
+                    <div className="text-body-secondary text-truncate small">Transaction Type 2</div>
+                    <div className="fs-5 fw-semibold">15,789</div>
+                  </div>
+                </CCol>
+                <CCol xs={4}>
+                  <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
+                    <div className="text-body-secondary text-truncate small">Transaction Type 3</div>
+                    <div className="fs-5 fw-semibold">22,643</div>
+                  </div>
+                </CCol>
+              </CRow>
             </CCardBody>
           </CCard>
         </CCol>
@@ -152,7 +168,7 @@ const TransactionChart = () => {
           <CCard>
             <CCardHeader>System Type</CCardHeader>
             <CCardBody>
-              <CChartLine
+            <CChartLine
                 ref={chartRef2}
                 style={{ height: '300px' }}
                 data={{
@@ -164,7 +180,7 @@ const TransactionChart = () => {
                       borderColor: getStyle('--cui-success'),
                       pointHoverBackgroundColor: getStyle('--cui-success'),
                       borderWidth: 2,
-                      data: Array(9).fill().map(() => random()),
+                      data: [30, 45, 60, 70, 105, 120, 140, 165, 180], // 👈 Fixed data for Type 1
                     },
                     {
                       label: 'Type 2',
@@ -173,12 +189,26 @@ const TransactionChart = () => {
                       pointHoverBackgroundColor: getStyle('--cui-warning'),
                       borderWidth: 2,
                       borderDash: [5, 5],
-                      data: Array(9).fill().map(() => random()),
+                      data: [25, 35, 40, 50, 45, 60, 30, 50, 70], // 👈 You can fix this too
                     },
                   ],
                 }}
                 options={chartOptions}
               />
+              <CRow className="pt-4">
+                <CCol xs={6}>
+                  <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
+                    <div className="text-body-secondary text-truncate small">System Type 1</div>
+                    <div className="fs-5 fw-semibold">78,623</div>
+                  </div>
+                </CCol>
+                <CCol xs={6}>
+                  <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
+                    <div className="text-body-secondary text-truncate small">System Type 2</div>
+                    <div className="fs-5 fw-semibold">49,123</div>
+                  </div>
+                </CCol>
+              </CRow>
             </CCardBody>
           </CCard>
         </CCol>
@@ -193,27 +223,6 @@ const TransactionChart = () => {
             <CCardBody>
               <CRow>
                 <CCol xs={12} md={6} xl={6}>
-                <CRow>
-                    <CCol xs={4}>
-                      <div className="border-start border-start-4 border-start-info py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">Transaction Type 1</div>
-                        <div className="fs-5 fw-semibold">9,123</div>
-                      </div>
-                    </CCol>
-                    <CCol xs={4}>
-                      <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">Transaction Type 2</div>
-                        <div className="fs-5 fw-semibold">15,789</div>
-                      </div>
-                    </CCol>
-                    <CCol xs={4}>
-                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">Transaction Type 3</div>
-                        <div className="fs-5 fw-semibold">22,643</div>
-                      </div>
-                    </CCol>
-                  </CRow>
-
                   <hr className="mt-0" />
                   {progressGroupExample1.map((item, index) => (
                     <div className="progress-group mb-4" key={index}>
@@ -229,20 +238,6 @@ const TransactionChart = () => {
                   ))}
                 </CCol>
                 <CCol xs={12} md={6} xl={6}>
-                  <CRow>
-                    <CCol xs={6}>
-                      <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">System Type 1</div>
-                        <div className="fs-5 fw-semibold">78,623</div>
-                      </div>
-                    </CCol>
-                    <CCol xs={6}>
-                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-body-secondary text-truncate small">System Type 2</div>
-                        <div className="fs-5 fw-semibold">49,123</div>
-                      </div>
-                    </CCol>
-                  </CRow>
                   <hr className="mt-0" />
                   {progressGroupExample2.map((item, index) => {
                     const value1Percent = (item.value1 / globalMax) * 100
