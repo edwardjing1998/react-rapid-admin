@@ -11,7 +11,6 @@ import {
   CTabPanel,
   CTabs
 } from '@coreui/react';
-import { DocsComponents, DocsExample } from 'src/components';
 import ClientInformation from './ClientInformation.js';  // Import the ClientInformation component
 import ClientInformationContent from './ClientInformationContent.js'; // Import new Client Information Content component
 import ClientATMCashPrefixes from './ClientATMCashPrefixes.js'; // Import new Client Information Content component
@@ -37,7 +36,6 @@ const SysPinConfig = () => {
         <ClientInformation onRowClick={handleRowClick} />
       </CCol>
       <CCol xs={12}>
-        <DocsComponents href="components/tabs/" />
         <CCard className="mb-4">
           <CCardHeader style={{ backgroundColor: '#E6E6FA', color: 'black' }}> {/* Violet */}
              <strong>Detailed information of Client</strong>

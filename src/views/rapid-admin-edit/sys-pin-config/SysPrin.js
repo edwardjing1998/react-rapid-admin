@@ -13,11 +13,13 @@ import {
   CFormInput,
   CButton,
 } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
 import SysPrinGeneral from './SysPrinGeneral.js';
 import ReMailOptions from './ReMailOptions.js';
 import StatusOptions from './StatusOptions.js';
 import Notes from './Notes.js';
+import FileSentTo from './FileSentTo.js';
+import FileSentFrom from './FileSentFrom.js';
+
 
 
 const SysPrin = () => {
@@ -237,6 +239,8 @@ const SysPrin = () => {
       setAstatRch('');
 
       setNonUS('');
+
+      setPoBox('');
       setUndeliverable('');
       setBadState('');
       setTempAwayAtts('');
@@ -249,10 +253,9 @@ const SysPrin = () => {
   return (
     <CRow className="justify-content-center align-items-center">
       <CCol xs={12}>
-        <DocsComponents href="components/tabs/" />
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>React Tabs</strong>
+             <strong>Sys/Prin Configuration</strong>
           </CCardHeader>
           <CCardBody>
 
@@ -321,7 +324,6 @@ const SysPrin = () => {
               <CButton color="primary" onClick={handleSearch}>Submit</CButton>
             </div>
 
-            <DocsExample href="components/tabs/#example">
               <CTabs activeItemKey="general">
                 <CTabList variant="pills">
                   <CTab itemKey="general">General</CTab>
@@ -383,14 +385,13 @@ const SysPrin = () => {
                     <Notes />
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="file-sent-to">
-                    File Sent to Options
+                    <FileSentTo />
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="file-recived-from">
-                    File Sent from tab content
+                    <FileSentFrom />
                   </CTabPanel>
                 </CTabContent>
               </CTabs>
-            </DocsExample>
           </CCardBody>
         </CCard>
       </CCol>

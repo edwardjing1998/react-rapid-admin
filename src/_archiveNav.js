@@ -78,81 +78,27 @@ const _archiveNav = [
   {
     component: () => (
       <li className="nav-title nav-title-black">
-        Edit
+        Maintenance
       </li>
     ),
   },
   {
     component: CNavItem,
-    name: 'Global Settings AAAAA',
+    name: 'Client Report Mapping',
     to: '/theme/colors',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Daily Messages',
+    name: 'Resend Web Reports',
     to: '/base/accordion',
     icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Users',
+    name: 'Web Client Directory',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'SysPrins',
-    to: '/edit/sys-prin-config',
-    icon: <CIcon icon={cilCode} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Receive Files',
-    to: '/base/cards',
-    icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Email Setup',
-    to: '/base/collapses',
-    icon: <CIcon icon={cilEnvelopeClosed} customClassName="nav-icon" />,
-  },  
-  {
-    component: CNavItem,
-    name: 'Message Table',
-    to: '/base/paginations',
-    icon: <CIcon icon={cilSpreadsheet} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Zip Code Table',
-    to: '/base/placeholders',
-    icon: <CIcon icon={cilLocationPin} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Mail Type',
-    to: '/base/popovers',
-    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Delete Case',
-    to: '/base/spinners',
-    icon: <CIcon icon={cilTrash} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Review Deleted Case',
-    to: '/base/tooltips',
-    icon: <CIcon icon={cilSearch} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Account Number',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
   },
   {
     component: () => (
@@ -163,91 +109,37 @@ const _archiveNav = [
   },
   {
     component: CNavItem,
-    name: 'Daily Activity',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Daily Return Destroy',
+    name: 'Input Robot Totals',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilRecycle} customClassName="nav-icon" />,
   },  
   {
     component: CNavItem,
-    name: 'Inventory List',
+    name: 'Billing',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilStorage} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Inventory Received',
+    name: 'Unmatched Sys Prins',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
   },    
   {
     component: CNavItem,
-    name: 'Productivity',
+    name: 'Report Queries',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Address Change',
+    name: 'Email Event Id',
     to: '/base/breadcrumbs',
     icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Billing',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
-  }, 
-  {
-    component: CNavItem,
-    name: 'Mail with A-Stats',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
-  },   
-  {
-    component: CNavItem,
-    name: 'Status',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilTask} customClassName="nav-icon" />,
-  },   
-  {
-    component: CNavItem,
-    name: 'Pending CIS',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilClock} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Failed Non-Mons',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilXCircle} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Robot Labels',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilCog} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Sys/Prin Config',
-    to: '/edit/sys-prin-config',
-    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Report Queries',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilFile} customClassName="nav-icon" />,
-  },                
+  },              
   {
     component: CNavGroup,
-    name: 'Base',
+    name: 'Query Maintenance',
     to: '/base',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
     items: [

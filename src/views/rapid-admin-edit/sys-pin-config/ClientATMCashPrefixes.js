@@ -10,7 +10,6 @@ import {
   CFormInput, 
   CButton 
 } from '@coreui/react'
-import { DocsExample } from '../../../components'
 import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // Import custom styles
 
 const Select = () => {
