@@ -85,19 +85,19 @@ const _archiveNav = [
   {
     component: CNavItem,
     name: 'Client Report Mapping',
-    to: '/theme/colors',
+    to: '/maintenance/client-report-mapping',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Resend Web Reports',
-    to: '/base/accordion',
+    to: '/maintenance/resend-web-reports',
     icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Web Client Directory',
-    to: '/base/breadcrumbs',
+    to: '/maintenance/web-client-directory',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
@@ -110,31 +110,31 @@ const _archiveNav = [
   {
     component: CNavItem,
     name: 'Input Robot Totals',
-    to: '/base/breadcrumbs',
+    to: '/report/input-rebot-totals',
     icon: <CIcon icon={cilRecycle} customClassName="nav-icon" />,
   },  
   {
     component: CNavItem,
     name: 'Billing',
-    to: '/base/breadcrumbs',
+    to: '/report/billing',
     icon: <CIcon icon={cilStorage} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Unmatched Sys Prins',
-    to: '/base/breadcrumbs',
+    to: '/report/unmatch-sys-prins',
     icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
   },    
   {
     component: CNavItem,
     name: 'Report Queries',
-    to: '/base/breadcrumbs',
+    to: '/report/report-queries',
     icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Email Event Id',
-    to: '/base/breadcrumbs',
+    to: '/report/email-event-id',
     icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
   },              
   {

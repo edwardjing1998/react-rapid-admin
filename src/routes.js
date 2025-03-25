@@ -63,7 +63,18 @@ const routes = [
   { path: '/archive-dashboard', name: 'ArchiveDashboard', element: ArchiveDashboard },
 
   { path: '/theme', name: 'Theme', element: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', element: Colors },
+
+  { path: '/theme/colors', name: 'Colors', element: Carousels },
+  { path: '/maintenance/client-report-mapping', name: 'Colors', element: Progress },
+  { path: '/maintenance/resend-web-reports', name: 'Colors', element: Spinners },
+  { path: '/maintenance/web-client-directory', name: 'Colors', element: Tooltips },
+
+  { path: '/report/unmatch-sys-prins', name: 'Colors', element: ChecksRadios },
+  { path: '/report/billing', name: 'Colors', element: Alerts },
+  { path: '/report/report-queries', name: 'Colors', element: Badges },
+  { path: '/report/email-event-id', name: 'Colors', element: Range },
+  { path: '/report/input-rebot-totals', name: 'Colors', element: Toasts },
+ 
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },

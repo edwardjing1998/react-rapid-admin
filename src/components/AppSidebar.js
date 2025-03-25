@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
-
 import {
   CCloseButton,
   CSidebar,
@@ -10,6 +9,7 @@ import {
   CSidebarFooter,
   CSidebarHeader,
   CSidebarToggler,
+  CSidebarNav,
 } from '@coreui/react'
 
 import { AppSidebarNav } from './AppSidebarNav'
@@ -17,8 +17,6 @@ import { AppSidebarNav } from './AppSidebarNav'
 // sidebar nav config
 import defaultNav from '../_nav'
 import archiveNav from '../_archiveNav'
-import { CSidebarNav } from '@coreui/react'
-
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
@@ -27,19 +25,32 @@ const AppSidebar = () => {
 
   const location = useLocation()
 
-    // 🔹 Add this line: it tracks which nav structure to use
-    const [navItems, setNavItems] = useState(defaultNav)
-
-      // 🔹 Add this logic to switch navigation based on URL
+  const [navItems, setNavItems] = useState(defaultNav)
 
   useEffect(() => {
-    if (location.pathname.startsWith('/archive-')) {
-      setNavItems(archiveNav)
-    } else {
-      setNavItems(defaultNav)
-    }
+    // Define all routes (or route prefixes) where archiveNav should be used
+    const archivePaths = [
+      '/archive-dashboard',
+      '/maintenance',
+      '/maintenance/client-report-mapping',
+      '/theme/colors',  // optional, if it's part of the archive flow
+      '/theme/typography', // optional
+      '/maintenance/resend-web-reports',
+      '/maintenance/web-client-directory',
+      '/report/input-rebot-totals',
+      '/report/unmatch-sys-prins',
+      '/report/billing',
+      '/report/report-queries',
+      '/report/email-event-id',
+
+    ]
+
+    const isArchiveRoute = archivePaths.some(path =>
+      location.pathname === path || location.pathname.startsWith(path)
+    )
+
+    setNavItems(isArchiveRoute ? archiveNav : defaultNav)
   }, [location])
-  
 
   return (
     <CSidebar
@@ -53,21 +64,18 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-
-
-
-      <CSidebarBrand to="/" className="w-100">
-  <img
-    src="src/assets/images/fiserv.png"
-    alt="Logo"
-    style={{
-      width: '100%',          // 👈 makes it take full width of sidebar
-      height: 'auto',         // 👈 keeps aspect ratio
-      maxHeight: '60px',      // 👈 control how tall it can get
-      objectFit: 'contain',   // 👈 prevents distortion
-    }}
-  />
-</CSidebarBrand>
+        <CSidebarBrand to="/" className="w-100">
+          <img
+            src="src/assets/images/fiserv.png"
+            alt="Logo"
+            style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: '60px',
+              objectFit: 'contain',
+            }}
+          />
+        </CSidebarBrand>
 
         <CCloseButton
           className="d-lg-none"
@@ -82,7 +90,9 @@ const AppSidebar = () => {
 
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler
-          onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}
+          onClick={() =>
+            dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })
+          }
         />
       </CSidebarFooter>
     </CSidebar>
