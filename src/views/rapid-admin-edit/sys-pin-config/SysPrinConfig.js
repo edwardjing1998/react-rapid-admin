@@ -15,7 +15,8 @@ import ClientInformation from './ClientInformation.js';  // Import the ClientInf
 import ClientInformationContent from './ClientInformationContent.js'; // Import new Client Information Content component
 import ClientATMCashPrefixes from './ClientATMCashPrefixes.js'; // Import new Client Information Content component
 import SysPrin from './SysPrin.js';
-
+import ClientReport from './ClientReport.js';
+import ClientEmailSetup from './ClientEmailSetup.js';
 
 
 const SysPinConfig = () => {
@@ -46,6 +47,8 @@ const SysPinConfig = () => {
                 <CTabList variant="pills">
                   <CTab itemKey="clientInformation">Client Information</CTab>
                   <CTab itemKey="clientATMCashPrefixes">Client ATM/Cash Prefixes</CTab>
+                  <CTab itemKey="clientEmailSetup">Client Email Setup</CTab>
+                  <CTab itemKey="clientReports">Client Reports</CTab>
                 </CTabList>
                 <CTabContent>
                   <CTabPanel className="p-3" itemKey="clientInformation">
@@ -53,6 +56,12 @@ const SysPinConfig = () => {
                   </CTabPanel>
                   <CTabPanel className="p-3" itemKey="clientATMCashPrefixes">
                     <ClientATMCashPrefixes />
+                  </CTabPanel>
+                  <CTabPanel className="p-3" itemKey="clientEmailSetup">
+                    <ClientEmailSetup />
+                  </CTabPanel>
+                  <CTabPanel className="p-3" itemKey="clientReports">
+                    <ClientReport />
                   </CTabPanel>
                 </CTabContent>
               </CTabs>

@@ -66,7 +66,7 @@ const _archiveNav = [
   {
     component: CNavItem,
     name: 'Connect Rapid3 Aechive',
-    to: '/theme/colors',
+    to: '/archive-dashboard',
     icon: <CIcon icon={cilLink} customClassName="nav-icon" />,
   },
   {
@@ -140,172 +140,44 @@ const _archiveNav = [
   {
     component: CNavGroup,
     name: 'Query Maintenance',
-    to: '/base',
+    to: '/archive-query-maintenance',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Accordion',
-        to: '/base/accordion',
+        name: 'Define Query',
+        to: '/archive-query-maintenance/define-query',
       },
       {
         component: CNavItem,
-        name: 'Breadcrumb',
-        to: '/base/breadcrumbs',
+        name: 'C3 File Transfer',
+        to: '/archive-query-maintenance/c3-file-transfer',
       },
       {
         component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Calendar'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/calendar/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
+        name: 'Data Definitions',
+        to: '/archive-query-maintenance/data-definitions',
       },
       {
         component: CNavItem,
-        name: 'Cards',
-        to: '/base/cards',
+        name: 'Schedule Batch Report',
+        to: '/archive-query-maintenance/schedule-batch-report',
       },
       {
         component: CNavItem,
-        name: 'Carousel',
-        to: '/base/carousels',
+        name: 'Table Load',
+        to: '/archive-query-maintenance/table-load',
       },
       {
         component: CNavItem,
-        name: 'Collapse',
-        to: '/base/collapses',
+        name: 'Table Load Column Mapping',
+        to: '/archive-query-maintenance/table-load-column-mapping',
       },
       {
         component: CNavItem,
-        name: 'List group',
-        to: '/base/list-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Navs & Tabs',
-        to: '/base/navs',
-      },
-      {
-        component: CNavItem,
-        name: 'Pagination',
-        to: '/base/paginations',
-      },
-      {
-        component: CNavItem,
-        name: 'Placeholders',
-        to: '/base/placeholders',
-      },
-      {
-        component: CNavItem,
-        name: 'Popovers',
-        to: '/base/popovers',
-      },
-      {
-        component: CNavItem,
-        name: 'Progress',
-        to: '/base/progress',
-      },
-      {
-        component: CNavItem,
-        name: 'Smart Pagination',
-        href: 'https://coreui.io/react/docs/components/smart-pagination/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Smart Table'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/smart-table/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Spinners',
-        to: '/base/spinners',
-      },
-      {
-        component: CNavItem,
-        name: 'Tables',
-        to: '/base/tables',
-      },
-      {
-        component: CNavItem,
-        name: 'Tabs',
-        to: '/base/tabs',
-      },
-      {
-        component: CNavItem,
-        name: 'Tooltips',
-        to: '/base/tooltips',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Virtual Scroller'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/virtual-scroller/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Buttons',
-    to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
-      },
-      {
-        component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Loading Button'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/loading-button/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
+        name: 'Tool Tips',
+        to: '/archive-query-maintenance/tool-tips',
+      }
     ],
   },
   {

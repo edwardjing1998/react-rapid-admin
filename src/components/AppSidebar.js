@@ -42,7 +42,13 @@ const AppSidebar = () => {
       '/report/billing',
       '/report/report-queries',
       '/report/email-event-id',
-
+      '/archive-query-maintenance/define-query',
+      '/archive-query-maintenance/c3-file-transfer',
+      '/archive-query-maintenance/data-definitions',
+      '/archive-query-maintenance/schedule-batch-report',
+      '/archive-query-maintenance/table-load',
+      '/archive-query-maintenance/table-load-column-mapping', 
+      '/archive-query-maintenance/tool-tips'
     ]
 
     const isArchiveRoute = archivePaths.some(path =>

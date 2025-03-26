@@ -74,6 +74,16 @@ const routes = [
   { path: '/report/report-queries', name: 'Colors', element: Badges },
   { path: '/report/email-event-id', name: 'Colors', element: Range },
   { path: '/report/input-rebot-totals', name: 'Colors', element: Toasts },
+
+  { path: '/archive-query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/archive-query-maintenance/c3-file-transfer', name: 'Colors', element: Alerts },
+  { path: '/archive-query-maintenance/data-definitions', name: 'Colors', element: Badges },
+  { path: '/archive-query-maintenance/schedule-batch-report', name: 'Colors', element: Range },
+  { path: '/archive-query-maintenance/table-load', name: 'Colors', element: Toasts },
+  { path: '/archive-query-maintenance/table-load-column-mapping', name: 'Colors', element: Range },
+  { path: '/archive-query-maintenance/tool-tips', name: 'Colors', element: Toasts },
+
+
  
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },
@@ -118,7 +128,18 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
 
   // Edit
+  { path: '/edit/global-settings', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/daily-message', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/uers', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/edit/sys-prin-config', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/eidt/recieve-files', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/email-setup', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/message-table', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/zip-code-table', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/mail-type', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/delete-case', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/review-deleted-case', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/eidt/account-number', name: 'SysPrinConfig', element: SysPrinConfig },
 
 ]
 
