@@ -36,7 +36,16 @@ import {
   cilXCircle,
   cilFile,
   cilTask,
-  cilCog
+  cilCog,
+  cilPeople,
+  cilAddressBook,
+  cilMoney,
+  cilBug,
+  cilLoopCircular,
+  cilSwapHorizontal,
+  cilCheckCircle,
+  cilFlagAlt,
+  cilTags
 
 } from '@coreui/icons';
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react';
@@ -92,13 +101,13 @@ const _nav = [
     component: CNavItem,
     name: 'Daily Message',
     to: '/edit/daily-message',
-    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Users',
     to: '/edit/users',
-    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
@@ -177,7 +186,7 @@ const _nav = [
     component: CNavItem,
     name: 'Web Client Directory',
     to: '/maintenance/web-client-directory',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilAddressBook} customClassName="nav-icon" />,
   },
     
   {
@@ -190,7 +199,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Daily',
-    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -222,7 +231,7 @@ const _nav = [
   {
     component: CNavGroup,
     name: 'Productivity',
-    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilTask} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -240,31 +249,31 @@ const _nav = [
     component: CNavItem,
     name: 'Billing',
     to: '/report/billing',
-    icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Unmatched Sys Prins',
     to: '/report/unmatch-sys-prins',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBug} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Resend Email Reports',
     to: '/report/resend-email-reports',
-    icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilLoopCircular} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Report Queries',
     to: '/report/report-queries',
-    icon: <CIcon icon={cilRecycle} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
   },  
   {
     component: CNavItem,
     name: 'Email Event Id',
     to: '/report/email-event-id',
-    icon: <CIcon icon={cilStorage} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
   }, 
   {
     component: CNavGroup,
@@ -312,37 +321,37 @@ const _nav = [
     component: CNavItem,
     name: 'Address Change',
     to: '/report/address-change',
-    icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
   },    
   {
     component: CNavItem,
     name: 'Mails with A-Stat',
     to: '/report/mails-with-a-stat',
-    icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilCheckCircle} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Status',
     to: '/report/status',
-    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilFlagAlt} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Pending CIS',
     to: '/report/pending-cis',
-    icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilClock} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Failed NON-MONS',
     to: '/report/failed-non-mons',
-    icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilXCircle} customClassName="nav-icon" />,
   },   
   {
     component: CNavItem,
     name: 'Robot Labels',
     to: '/report/robot-labels',
-    icon: <CIcon icon={cilTask} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilTags} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
