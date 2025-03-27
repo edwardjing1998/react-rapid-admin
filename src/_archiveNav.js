@@ -36,7 +36,9 @@ import {
   cilXCircle,
   cilFile,
   cilTask,
-  cilCog
+  cilCog,
+  cilMoney,
+  cilBug
 
 } from '@coreui/icons';
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react';
@@ -117,13 +119,13 @@ const _archiveNav = [
     component: CNavItem,
     name: 'Billing',
     to: '/archive-report/billing',
-    icon: <CIcon icon={cilStorage} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilMoney} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
     name: 'Unmatched Sys Prins',
     to: '/archive-report/unmatch-sys-prins',
-    icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilBug} customClassName="nav-icon" />,
   },    
   {
     component: CNavItem,
