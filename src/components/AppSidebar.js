@@ -31,24 +31,22 @@ const AppSidebar = () => {
     // Define all routes (or route prefixes) where archiveNav should be used
     const archivePaths = [
       '/archive-dashboard',
-      '/maintenance',
-      '/maintenance/client-report-mapping',
-      '/theme/colors',  // optional, if it's part of the archive flow
-      '/theme/typography', // optional
-      '/maintenance/resend-web-reports',
-      '/maintenance/web-client-directory',
       '/report/input-rebot-totals',
-      '/report/unmatch-sys-prins',
-      '/report/billing',
-      '/report/report-queries',
-      '/report/email-event-id',
       '/archive-query-maintenance/define-query',
       '/archive-query-maintenance/c3-file-transfer',
       '/archive-query-maintenance/data-definitions',
       '/archive-query-maintenance/schedule-batch-report',
       '/archive-query-maintenance/table-load',
       '/archive-query-maintenance/table-load-column-mapping', 
-      '/archive-query-maintenance/tool-tips'
+      '/archive-query-maintenance/tool-tips',
+      '/archive-maintenance/client-report-mapping',
+      '/archive-maintenance/resend-web-reports',
+      '/archive-maintenance/web-client-directory',
+      '/archive-report/billing',
+      '/archive-maintenance/input-robot-totals',
+      '/archive-report/unmatch-sys-prins',
+      '/archive-report/report-queries',
+      '/archive-report/email-event-id',
     ]
 
     const isArchiveRoute = archivePaths.some(path =>

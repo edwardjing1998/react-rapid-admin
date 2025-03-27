@@ -90,16 +90,16 @@ const _nav = [
   },
   {
     component: CNavItem,
-    name: 'Daily Messages',
+    name: 'Daily Message',
     to: '/edit/daily-message',
-    icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Users',
-    to: '/edit/uers',
-    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
-  }, 
+    to: '/edit/users',
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+  },
   {
     component: CNavItem,
     name: 'SysPrins',
@@ -109,7 +109,7 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Receive Files',
-    to: '/eidt/recieve-files',
+    to: '/eidt/receive-files',
     icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
   }, 
   {
@@ -138,13 +138,13 @@ const _nav = [
   }, 
   {
     component: CNavItem,
-    name: 'Delete Case',
+    name: 'Delete Case ...',
     to: '/edit/delete-case',
     icon: <CIcon icon={cilTrash} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Review Deleted Case',
+    name: 'Review Deleted Case ...',
     to: '/edit/review-deleted-case',
     icon: <CIcon icon={cilSearch} customClassName="nav-icon" />,
   }, 
@@ -154,6 +154,32 @@ const _nav = [
     to: '/eidt/account-number',
     icon: <CIcon icon={cilBarcode} customClassName="nav-icon" />,
   },
+{
+    component: () => (
+      <li className="nav-title nav-title-black">
+        Maintenance
+      </li>
+    ),
+  },
+  {
+    component: CNavItem,
+    name: 'Client Report Mapping',
+    to: '/maintenance/client-report-mapping',
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Resend Web Reports',
+    to: '/maintenance/resend-web-reports',
+    icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Web Client Directory',
+    to: '/maintenance/web-client-directory',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+  },
+    
   {
     component: () => (
       <li className="nav-title nav-title-black">
@@ -162,465 +188,168 @@ const _nav = [
     ),
   },
   {
+    component: CNavGroup,
+    name: 'Daily',
+    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Daily Activity',
+        to: '/report/daily-activity',
+      },
+      {
+        component: CNavItem,
+        name: 'Daily Return Destroy',
+        to: '/report/return-destroy',
+      },
+      {
+        component: CNavItem,
+        name: 'Inventory',
+        to: '/report/inventory',
+      },
+      {
+        component: CNavItem,
+        name: 'Inventory Listing',
+        to: '/report/inventory-listing',
+      },
+      {
+        component: CNavItem,
+        name: 'Inventory Received',
+        to: '/report/inventory-received',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: 'Productivity',
+    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Productivity Report',
+        to: '/report/productivity-report',
+      },
+      {
+        component: CNavItem,
+        name: 'Input Robot Totals',
+        to: '/report/input-robot-totals',
+      }
+    ],
+  },
+  {
     component: CNavItem,
-    name: 'Daily Activity',
-    to: '/base/breadcrumbs',
+    name: 'Billing',
+    to: '/report/billing',
+    icon: <CIcon icon={cilSpeech} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Unmatched Sys Prins',
+    to: '/report/unmatch-sys-prins',
+    icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
+  }, 
+  {
+    component: CNavItem,
+    name: 'Resend Email Reports',
+    to: '/report/resend-email-reports',
     icon: <CIcon icon={cilCalendar} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Daily Return Destroy',
-    to: '/base/breadcrumbs',
+    name: 'Report Queries',
+    to: '/report/report-queries',
     icon: <CIcon icon={cilRecycle} customClassName="nav-icon" />,
   },  
   {
     component: CNavItem,
-    name: 'Inventory List',
-    to: '/base/breadcrumbs',
+    name: 'Email Event Id',
+    to: '/report/email-event-id',
     icon: <CIcon icon={cilStorage} customClassName="nav-icon" />,
   }, 
   {
+    component: CNavGroup,
+    name: 'Query Maintenance',
+    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Define Query',
+        to: '/query-maintenance/define-query',
+      },
+      {
+        component: CNavItem,
+        name: 'C3 File Transfer',
+        to: '/query-maintenance/c3-file-transfer',
+      },
+      {
+        component: CNavItem,
+        name: 'Data Definitions',
+        to: '/query-maintenance/data-definitions',
+      },
+      {
+        component: CNavItem,
+        name: 'Schedule Batch Report',
+        to: '/query-maintenance/schedule-batch-report',
+      },
+      {
+        component: CNavItem,
+        name: 'Table Load',
+        to: '/query-maintenance/table-load',
+      },
+      {
+        component: CNavItem,
+        name: 'Table Load Column Mapping',
+        to: '/query-maintenance/table-load-column-mapping',
+      },
+      {
+        component: CNavItem,
+        name: 'Tool Tips',
+        to: '/query-maintenance/tool-tips',
+      }
+    ],
+  },
+  {
     component: CNavItem,
-    name: 'Inventory Received',
-    to: '/base/breadcrumbs',
+    name: 'Address Change',
+    to: '/report/address-change',
     icon: <CIcon icon={cilCloudDownload} customClassName="nav-icon" />,
   },    
   {
     component: CNavItem,
-    name: 'Productivity',
-    to: '/base/breadcrumbs',
+    name: 'Mails with A-Stat',
+    to: '/report/mails-with-a-stat',
     icon: <CIcon icon={cilChartLine} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Address Change',
-    to: '/base/breadcrumbs',
+    name: 'Status',
+    to: '/report/status',
     icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Billing',
-    to: '/base/breadcrumbs',
+    name: 'Pending CIS',
+    to: '/report/pending-cis',
     icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
   }, 
   {
     component: CNavItem,
-    name: 'Mail with A-Stats',
-    to: '/base/breadcrumbs',
+    name: 'Failed NON-MONS',
+    to: '/report/failed-non-mons',
     icon: <CIcon icon={cilEnvelopeOpen} customClassName="nav-icon" />,
   },   
   {
     component: CNavItem,
-    name: 'Status',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilTask} customClassName="nav-icon" />,
-  },   
-  {
-    component: CNavItem,
-    name: 'Pending CIS',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilClock} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Failed Non-Mons',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilXCircle} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
     name: 'Robot Labels',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilCog} customClassName="nav-icon" />,
-  },    
+    to: '/report/robot-labels',
+    icon: <CIcon icon={cilTask} customClassName="nav-icon" />,
+  }, 
   {
     component: CNavItem,
     name: 'Sys/Prin Config',
     to: '/edit/sys-prin-config',
     icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
-  },    
-  {
-    component: CNavItem,
-    name: 'Report Queries',
-    to: '/base/breadcrumbs',
-    icon: <CIcon icon={cilFile} customClassName="nav-icon" />,
-  },                
-  {
-    component: CNavGroup,
-    name: 'Base',
-    to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Accordion',
-        to: '/base/accordion',
-      },
-      {
-        component: CNavItem,
-        name: 'Breadcrumb',
-        to: '/base/breadcrumbs',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Calendar'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/calendar/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Cards',
-        to: '/base/cards',
-      },
-      {
-        component: CNavItem,
-        name: 'Carousel',
-        to: '/base/carousels',
-      },
-      {
-        component: CNavItem,
-        name: 'Collapse',
-        to: '/base/collapses',
-      },
-      {
-        component: CNavItem,
-        name: 'List group',
-        to: '/base/list-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Navs & Tabs',
-        to: '/base/navs',
-      },
-      {
-        component: CNavItem,
-        name: 'Pagination',
-        to: '/base/paginations',
-      },
-      {
-        component: CNavItem,
-        name: 'Placeholders',
-        to: '/base/placeholders',
-      },
-      {
-        component: CNavItem,
-        name: 'Popovers',
-        to: '/base/popovers',
-      },
-      {
-        component: CNavItem,
-        name: 'Progress',
-        to: '/base/progress',
-      },
-      {
-        component: CNavItem,
-        name: 'Smart Pagination',
-        href: 'https://coreui.io/react/docs/components/smart-pagination/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Smart Table'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/smart-table/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Spinners',
-        to: '/base/spinners',
-      },
-      {
-        component: CNavItem,
-        name: 'Tables',
-        to: '/base/tables',
-      },
-      {
-        component: CNavItem,
-        name: 'Tabs',
-        to: '/base/tabs',
-      },
-      {
-        component: CNavItem,
-        name: 'Tooltips',
-        to: '/base/tooltips',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Virtual Scroller'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/virtual-scroller/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Buttons',
-    to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
-      },
-      {
-        component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Loading Button'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/components/loading-button/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Edit',
-    icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Users',
-        to: '/forms/form-control',
-      },
-      {
-        component: CNavItem,
-        name: 'Daily Message',
-        to: '/base/cards',
-      },
-      {
-        component: CNavItem,
-        name: 'Sys/Prin Configuration',
-        to: '/edit/sys-prin-config',
-      },
-      {
-        component: CNavItem,
-        name: 'Select',
-        to: '/forms/select',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Multi Select'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/forms/multi-select/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Checks & Radios',
-        to: '/forms/checks-radios',
-      },
-      {
-        component: CNavItem,
-        name: 'Range',
-        to: '/forms/range',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Range Slider'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/forms/range-slider/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Rating'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/forms/rating/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Input Group',
-        to: '/forms/input-group',
-      },
-      {
-        component: CNavItem,
-        name: 'Floating Labels',
-        to: '/forms/floating-labels',
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Date Picker'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/forms/date-picker/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Date Range Picker',
-        href: 'https://coreui.io/react/docs/forms/date-range-picker/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: (
-          <React.Fragment>
-            {'Time Picker'}
-            <CIcon icon={cilExternalLink} size="sm" className="ms-2" />
-          </React.Fragment>
-        ),
-        href: 'https://coreui.io/react/docs/forms/time-picker/',
-        badge: {
-          color: 'danger',
-          text: 'PRO',
-        },
-      },
-      {
-        component: CNavItem,
-        name: 'Layout',
-        to: '/forms/layout',
-      },
-      {
-        component: CNavItem,
-        name: 'Validation',
-        to: '/forms/validation',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Charts',
-    to: '/charts',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavGroup,
-    name: 'Icons',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'CoreUI Free',
-        to: '/icons/coreui-icons',
-      },
-      {
-        component: CNavItem,
-        name: 'CoreUI Flags',
-        to: '/icons/flags',
-      },
-      {
-        component: CNavItem,
-        name: 'CoreUI Brands',
-        to: '/icons/brands',
-      },
-    ],
-  },
-  {
-    component: CNavGroup,
-    name: 'Notifications',
-    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Alerts',
-        to: '/notifications/alerts',
-      },
-      {
-        component: CNavItem,
-        name: 'Badges',
-        to: '/notifications/badges',
-      },
-      {
-        component: CNavItem,
-        name: 'Modal',
-        to: '/notifications/modals',
-      },
-      {
-        component: CNavItem,
-        name: 'Toasts',
-        to: '/notifications/toasts',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Widgets',
-    to: '/widgets',
-    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
-  {
-    component: CNavTitle,
-    name: 'Extras',
-  },
+  },                  
   {
     component: CNavGroup,
     name: 'Pages',

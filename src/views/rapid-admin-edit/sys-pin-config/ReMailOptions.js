@@ -147,7 +147,9 @@ const ReMailOptions = ({ nonUS, setNonUS, poBox, setPoBox, undeliverable, setUnd
                 <option value=""></option>
                 <option value="Return">Return</option>
                 <option value="Destroy">Destroy</option>
-                <option value="In Process">In Process</option>
+                <option value="Research Destroy">Research / Destroy</option>
+                <option value="Research / Return">Research / Return</option>
+                <option value="Research / Carrier Ret">Research / Carrier Ret</option>
               </CFormSelect>
             </div>
 

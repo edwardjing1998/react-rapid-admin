@@ -72,9 +72,9 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                   }}
                 >
                   <option value=""></option>
-                  <option value="TypeA">Customer Type A</option>
-                  <option value="TypeB">Customer Type B</option>
-                  <option value="TypeC">Customer Type C</option>
+                  <option value="TypeA">Full Processing</option>
+                  <option value="TypeB">Destroy All</option>
+                  <option value="TypeC">Retrun All</option>
                 </CFormSelect>
            </div>
 
@@ -110,10 +110,11 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                     fontWeight: '500',
                   }}
                 >
-                  <option value=""></option>
-                  <option value="Return Status 1">Pending</option>
-                  <option value="Return Status 2">Approved</option>
-                  <option value="Return Status 3">Rejected</option>
+                  <option value="">None</option>
+                  <option value="Return Status 1">A Status</option>
+                  <option value="Return Status 2">C Status</option>
+                  <option value="Return Status 3">E Status</option>
+                  <option value="Return Status 4">F Status</option>
                 </CFormSelect>
             </div>
 
@@ -149,10 +150,11 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                     fontWeight: '500',
                   }}
                 >
-                  <option value=""></option>
-                  <option value="Destroy Status 1">Not Destroyed</option>
-                  <option value="Destroy Status 2">Destroyed</option>
-                  <option value="Destroy Status 3">In Process</option>
+                  <option value="">None</option>
+                  <option value="Destroy Status 1">A Status</option>
+                  <option value="Destroy Status 2">C Status</option>
+                  <option value="Destroy Status 3">E Status</option>
+                  <option value="Destroy Status 4">F Status</option>
                 </CFormSelect>
             </div>
 
@@ -172,7 +174,7 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                   display: 'flex',
                   alignItems: 'center',
                 }}>
-                  Special Option:
+                  Special:
                 </label>
 
                 {/* Special */}
@@ -183,8 +185,8 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                     fontWeight: '500',
                   }}>
                   <option></option>
-                  <option value="1">Yes</option>
-                  <option value="2">No</option>
+                  <option value="1">Destroy</option>
+                  <option value="2">Return</option>
                 </CFormSelect>
               </div>
 
@@ -214,8 +216,8 @@ import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'; // I
                     fontWeight: '500',
                   }}>
                   <option></option>
-                  <option value="1">Printed</option>
-                  <option value="2">Not Printed</option>
+                  <option value="1">Destroy</option>
+                  <option value="2">Return</option>
                 </CFormSelect>
                 </div>
             </CCardBody>

@@ -55,6 +55,11 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 
 // Rapid Admin -> Edit
 const SysPrinConfig = React.lazy(() => import('./views/rapid-admin-edit/sys-pin-config/SysPrinConfig'))
+const GlobalSettingForm = React.lazy(() => import('./views/rapid-admin-edit/global-setting/GlobalSettingForm'))
+const DailyMessage = React.lazy(() => import('./views/rapid-admin-edit/daily-message/DailyMessage'))
+const Users = React.lazy(() => import('./views/rapid-admin-edit/users/Users'))
+const ReceivingFiles = React.lazy(() => import('./views/rapid-admin-edit/receiving-files/ReceivingFiles'))
+const EmailSetup = React.lazy(() => import('./views/rapid-admin-edit/email-setup/EmailSetup'))
 
 
 const routes = [
@@ -75,16 +80,60 @@ const routes = [
   { path: '/report/email-event-id', name: 'Colors', element: Range },
   { path: '/report/input-rebot-totals', name: 'Colors', element: Toasts },
 
-  { path: '/archive-query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
-  { path: '/archive-query-maintenance/c3-file-transfer', name: 'Colors', element: Alerts },
-  { path: '/archive-query-maintenance/data-definitions', name: 'Colors', element: Badges },
+  { path: '/report/billing', name: 'Colors', element: Toasts },
+  { path: '/report/resend-email-reports', name: 'Colors', element: Toasts },
+  { path: '/report/report-queries', name: 'Colors', element: Toasts },
+  { path: '/report/email-event-id', name: 'Colors', element: Toasts },
+
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+
+  { path: '/archive-query-maintenance/c3-file-transfer', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/archive-query-maintenance/table-load', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+
+
+  { path: '/query-maintenance/c3-file-transfer', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/data-definitions', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/table-load', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/table-load-column-mapping', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/tool-tips', name: 'Colors', element: ChecksRadios },
+
+  { path: '/report/address-change', name: 'Colors', element: ChecksRadios },
+  { path: '/report/mails-with-a-stat', name: 'Colors', element: ChecksRadios },
+  { path: '/report/status', name: 'Colors', element: ChecksRadios },
+  { path: '/report/pending-cis', name: 'Colors', element: ChecksRadios },
+  { path: '/report/failed-non-mons', name: 'Colors', element: ChecksRadios },
+  { path: '/report/robot-labels', name: 'Colors', element: ChecksRadios },
+
+
+  { path: '/query-maintenance/define-query', name: 'Colors', element: ChecksRadios },
+  { path: '/query-maintenance/c3-file-transfer', name: 'Colors', element: Alerts },
+  { path: '/query-maintenance/data-definitions', name: 'Colors', element: Badges },
+  { path: '/query-maintenance/schedule-batch-report', name: 'Colors', element: Range },
+  { path: '/query-maintenance/table-load', name: 'Colors', element: Toasts },
+  { path: '/query-maintenance/table-load-column-mapping', name: 'Colors', element: Range },
+  { path: '/query-maintenance/tool-tips', name: 'Colors', element: Toasts },
+
+
+  { path: '/archive-maintenance/client-report-mapping', name: 'Colors', element: Toasts },
+  { path: '/archive-maintenance/resend-web-reports', name: 'Colors', element: Spinners },
+  { path: '/archive-maintenance/web-client-directory', name: 'Colors', element: Tooltips },
+  { path: '/archive-report/billing', name: 'Colors', element: Alerts },
+  { path: '/archive-maintenance/input-robot-totals', name: 'Colors', element: Alerts },
+  { path: '/archive-report/unmatch-sys-prins', name: 'Colors', element: Alerts },
+  { path: '/archive-report/report-queries', name: 'Colors', element: Alerts },
+  { path: '/archive-report/email-event-id', name: 'Colors', element: Range },
+  { path: '/archive-query-maintenance/tool-tips', name: 'Colors', element: Range },
+
   { path: '/archive-query-maintenance/schedule-batch-report', name: 'Colors', element: Range },
-  { path: '/archive-query-maintenance/table-load', name: 'Colors', element: Toasts },
-  { path: '/archive-query-maintenance/table-load-column-mapping', name: 'Colors', element: Range },
-  { path: '/archive-query-maintenance/tool-tips', name: 'Colors', element: Toasts },
+  { path: '/archive-query-maintenance/data-definitions', name: 'Spinners', element: Spinners },
+  { path: '/archive-query-maintenance/define-query', name: 'Spinners', element: Spinners },
+  { path: 'archive-query-maintenance/table-load-column-mapping', name: 'Spinners', element: Spinners },
 
-
- 
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', element: Accordion },
@@ -128,18 +177,32 @@ const routes = [
   { path: '/widgets', name: 'Widgets', element: Widgets },
 
   // Edit
-  { path: '/edit/global-settings', name: 'SysPrinConfig', element: SysPrinConfig },
-  { path: '/edit/daily-message', name: 'SysPrinConfig', element: SysPrinConfig },
-  { path: '/edit/uers', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/edit/global-settings', name: 'GlobalSettingForm', element: GlobalSettingForm },
+  { path: '/edit/daily-message', name: 'DailyMessage', element: DailyMessage },
+  { path: '/edit/users', name: 'Users', element: Users },
   { path: '/edit/sys-prin-config', name: 'SysPrinConfig', element: SysPrinConfig },
-  { path: '/eidt/recieve-files', name: 'SysPrinConfig', element: SysPrinConfig },
-  { path: '/edit/email-setup', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/eidt/receive-files', name: 'ReceivingFiles', element: ReceivingFiles },
+  { path: '/edit/email-setup', name: 'EmailSetup', element: EmailSetup },
   { path: '/edit/message-table', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/edit/zip-code-table', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/edit/mail-type', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/edit/delete-case', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/edit/review-deleted-case', name: 'SysPrinConfig', element: SysPrinConfig },
   { path: '/eidt/account-number', name: 'SysPrinConfig', element: SysPrinConfig },
+
+  { path: '/report/return-destroy', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/report/inventory', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/report/inventory-listing', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/report/inventory-received', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/report/daily-activity', name: 'Toasts', element: Toasts },
+  { path: '/report/productivity-report', name: 'SysPrinConfig', element: SysPrinConfig },
+  { path: '/report/input-robot-totals', name: 'Toasts', element: Toasts },
+  
+
+  
+
+
+  
 
 ]
 
