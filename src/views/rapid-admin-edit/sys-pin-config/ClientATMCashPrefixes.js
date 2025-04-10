@@ -1,3 +1,4 @@
+// ✅ File: ClientATMCashPrefixes.js
 import React, { useEffect, useState } from 'react'
 import {
   CCard,
@@ -12,9 +13,9 @@ import {
 import '../../../scss/sys-prin-configuration/client-atm-pin-prefixes.scss'
 
 const ClientATMCashPrefixes = ({ selectedData }) => {
-  const [options, setOptions] = useState([]) // list of prefix strings
-  const [inputValue, setInputValue] = useState('') // prefix input value
-  const [atmCashRule, setAtmCashRule] = useState('') // atmCashRule value
+  const [options, setOptions] = useState([])
+  const [inputValue, setInputValue] = useState('')
+  const [atmCashRule, setAtmCashRule] = useState('')
   const [selectedToDelete, setSelectedToDelete] = useState([])
 
   useEffect(() => {
@@ -49,7 +50,6 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
       const selectedPrefix = selected[0]
       setInputValue(selectedPrefix)
 
-      // Find the atmCashRule based on prefix
       const found = selectedData.sysPrinsPrefixes?.find((p) => p.prefix === selectedPrefix)
       if (found) {
         setAtmCashRule(found.atmCashRule)
@@ -57,27 +57,62 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
     }
   }
 
-  const handleAddOption = () => {
+  const handleAddOption = async () => {
     const trimmed = (inputValue || '').trim()
     if (trimmed !== '' && !options.includes(trimmed)) {
-      setOptions((prev) => [...prev, trimmed])
-      setInputValue('')
-      setAtmCashRule('')
+      try {
+        const response = await fetch('http://localhost:4444/api/prefixes/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            billingSp: selectedData.billingSp,
+            prefix: trimmed,
+            atmCashRule: atmCashRule,
+          }),
+        })
+
+        if (response.ok) {
+          setOptions((prev) => [...prev, trimmed])
+          setInputValue('')
+          setAtmCashRule('')
+        } else {
+          console.error('Failed to add prefix')
+        }
+      } catch (err) {
+        console.error('Error calling add API:', err)
+      }
     }
   }
 
-  const handleDeleteOption = () => {
+  const handleDeleteOption = async () => {
     if (selectedToDelete.length > 0) {
-      setOptions((prev) => prev.filter((opt) => !selectedToDelete.includes(opt)))
-      setSelectedToDelete([])
-      setInputValue('')
-      setAtmCashRule('')
+      const prefixToDelete = selectedToDelete[0]
+      try {
+        const res = await fetch('http://localhost:4444/api/prefixes/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            billingSp: selectedData.billingSp,
+            prefix: prefixToDelete,
+          }),
+        })
+
+        if (res.ok) {
+          setOptions((prev) => prev.filter((opt) => opt !== prefixToDelete))
+          setSelectedToDelete([])
+          setInputValue('')
+          setAtmCashRule('')
+        } else {
+          console.error('Failed to delete prefix')
+        }
+      } catch (err) {
+        console.error('Error calling delete API:', err)
+      }
     }
   }
 
   return (
     <CRow className="d-flex justify-content-between align-items-stretch" style={{ minHeight: '60vh' }}>
-      {/* Left Column */}
       <CCol xs={6} className="d-flex justify-content-start h-100">
         <CCard className="mb-4 w-100 h-100">
           <CCardBody className="d-flex flex-column h-100">
@@ -96,9 +131,7 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
                 value={selectedToDelete}
               >
                 {options.map((opt, idx) => (
-                  <option key={idx} value={opt}>
-                    {opt}
-                  </option>
+                  <option key={idx} value={opt}>{opt}</option>
                 ))}
               </CFormSelect>
             </div>
@@ -106,17 +139,13 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
         </CCard>
       </CCol>
 
-      {/* Right Column */}
       <CCol xs={6} className="d-flex justify-content-end h-100">
         <CCard className="mb-4 w-100" style={{ minHeight: '470px' }}>
           <CCardBody className="d-flex flex-column justify-content-between h-100">
             <div></div>
 
-            {/* Prefix input */}
             <div>
-              <CFormLabel htmlFor="prefixInput" style={{ fontSize: '0.87rem' }}>
-                Account Prefix
-              </CFormLabel>
+              <CFormLabel htmlFor="prefixInput" style={{ fontSize: '0.87rem' }}>Account Prefix</CFormLabel>
               <CFormInput
                 id="prefixInput"
                 type="text"
@@ -128,11 +157,8 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
 
             <div style={{ height: '10px' }}></div>
 
-            {/* ATM/Cash Rule dropdown */}
             <div>
-              <CFormLabel htmlFor="atmSelect" style={{ fontSize: '0.87rem' }}>
-                ATM/Cash
-              </CFormLabel>
+              <CFormLabel htmlFor="atmSelect" style={{ fontSize: '0.87rem' }}>ATM/Cash</CFormLabel>
               <CFormSelect
                 id="atmSelect"
                 className="mb-3"
@@ -144,7 +170,6 @@ const ClientATMCashPrefixes = ({ selectedData }) => {
                 <option value="Return">Return</option>
               </CFormSelect>
 
-              {/* Buttons */}
               <CRow className="text-center">
                 <CCol>
                   <CButton color="outline-primary" className="w-100" onClick={handleAddOption}>OK</CButton>

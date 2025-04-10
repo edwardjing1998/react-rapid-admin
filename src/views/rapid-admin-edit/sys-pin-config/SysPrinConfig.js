@@ -3,8 +3,6 @@ import {
   CRow,
   CCol,
   CCard,
-  CCardBody,
-  CCardHeader,
   CTab,
   CTabContent,
   CTabList,
@@ -18,12 +16,9 @@ import ClientATMCashPrefixes from './ClientATMCashPrefixes.js';
 import SysPrin from './SysPrin.js';
 import ClientReport from './ClientReport.js';
 import ClientEmailSetup from './ClientEmailSetup.js';
-import { clientJsonDemo } from './data.js';
-
-import CIcon from '@coreui/icons-react';
-import { cilChevronRight, cilChevronBottom } from '@coreui/icons';
 
 const SysPinConfig = () => {
+  const [clientList, setClientList] = useState([]);
   const [selectedData, setSelectedData] = useState({
     client: '',
     name: '',
@@ -33,9 +28,27 @@ const SysPinConfig = () => {
     sysPrinsPrefixes: [],
   });
 
+  useEffect(() => {
+    fetch('http://localhost:4444/api/clients')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch clients');
+        }
+        return response.json(); // ✅ read once and return
+      })
+      .then((data) => {
+        console.log("Fetched data:", data);  // ✅ Use console.log to inspect
+        setClientList(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching clients:', error);
+      });
+  }, []);
+  
+
   const handleRowClick = (rowData) => {
     const billingSp = rowData.billingSp || '';
-    const matchedClient = clientJsonDemo.find((client) => client.billingSp === billingSp);
+    const matchedClient = clientList.find((client) => client.billingSp === billingSp);
     const atmCashPrefixes = matchedClient?.sysPrinsPrefixes || [];
 
     setSelectedData((prev) => ({
@@ -47,12 +60,10 @@ const SysPinConfig = () => {
 
   return (
     <CRow className="align-items-stretch" style={{ height: 'calc(100vh - 100px)' }}>
-      {/* Left: ClientInformation spans full height */}
       <CCol xs={4}>
-        <ClientInformation onRowClick={handleRowClick} />
+        <ClientInformation onRowClick={handleRowClick} clientList={clientList} />
       </CCol>
 
-      {/* Right: stacked tab section and sysprin */}
       <CCol xs={8} className="d-flex flex-column">
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <CCard className="mb-3 flex-grow-1">
