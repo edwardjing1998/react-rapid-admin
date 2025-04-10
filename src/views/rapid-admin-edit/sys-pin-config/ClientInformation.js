@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   CCard,
-  CCardBody,
-  CCardHeader,
   CCol,
   CRow
 } from '@coreui/react';
 import { ModuleRegistry } from 'ag-grid-community';
 import { ClientSideRowModelModule } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
-import { clientsJson } from './data.js';
+import { clientJsonDemo } from './data.js';
 import '../../../scss/sys-prin-configuration/client-information.scss';
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
@@ -25,8 +23,8 @@ const ClientInformation = ({ onRowClick }) => {
     const flattenedData = [];
 
     const clientsToShow = selectedClient === 'ALL'
-      ? clientsJson
-      : clientsJson.filter(c => c.client === selectedClient);
+      ? clientJsonDemo
+      : clientJsonDemo.filter(c => c.client === selectedClient);
 
     clientsToShow.forEach(clientGroup => {
       const clientId = clientGroup.client;
@@ -58,21 +56,35 @@ const ClientInformation = ({ onRowClick }) => {
       });
 
       if (isExpanded) {
-        clientGroup.sysPrins?.forEach(sysPrin => {
-          flattenedData.push({
-            isGroup: false,
-            client: clientId,
-            sysPrin: sysPrin.sysPrin,
-            name: sysPrin.clientDTO.name,
-            address: sysPrin.clientDTO.addr,
-            city: sysPrin.clientDTO.city,
-            state: sysPrin.clientDTO.state,
-            zip: sysPrin.clientDTO.zip,
-            contact: sysPrin.contact,
-            phone: sysPrin.phone,
-            active: sysPrin.active === 'Y',
-          });
-        });
+
+            clientGroup.sysPrins?.forEach(sysPrin => {
+              const matchedSysPrin = clientGroup.sysPrins?.find(sp => sp.sysPrin === sysPrin.sysPrin);
+
+              flattenedData.push({
+                isGroup: false,
+                client: clientId,
+                sysPrin: sysPrin.sysPrin,
+                name: clientGroup.name,
+                address: clientGroup.addr,
+                city: clientGroup.city,
+                state: clientGroup.state,
+                zip: clientGroup.zip,
+                contact: clientGroup.contact,
+                phone: clientGroup.phone,
+
+                faxNumber: clientGroup.faxNumber,
+                billingSp: clientGroup.billingSp,
+                excludeFromReport: clientGroup.excludeFromReport,
+                positiveReports: clientGroup.positiveReports,
+                subClientInd: clientGroup.subClientInd,
+                amexIssued: clientGroup.amexIssued,
+                reportBreakFlag: clientGroup.reportBreakFlag,
+                chLookUpType: clientGroup.chLookUpType,
+
+                active: clientGroup.active,
+                sysPrinActive: matchedSysPrin?.active === 'Y' // convert to boolean if needed
+              });
+            });
       }
     });
 

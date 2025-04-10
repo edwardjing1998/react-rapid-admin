@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   CRow,
   CCol,
@@ -18,58 +18,69 @@ import ClientATMCashPrefixes from './ClientATMCashPrefixes.js';
 import SysPrin from './SysPrin.js';
 import ClientReport from './ClientReport.js';
 import ClientEmailSetup from './ClientEmailSetup.js';
+import { clientJsonDemo } from './data.js';
 
 import CIcon from '@coreui/icons-react';
 import { cilChevronRight, cilChevronBottom } from '@coreui/icons';
-
 
 const SysPinConfig = () => {
   const [selectedData, setSelectedData] = useState({
     client: '',
     name: '',
-    address: ''
+    address: '',
+    billingSp: '',
+    atmCashRule: '',
+    sysPrinsPrefixes: [],
   });
 
   const handleRowClick = (rowData) => {
-    setSelectedData(rowData);
+    const billingSp = rowData.billingSp || '';
+    const matchedClient = clientJsonDemo.find((client) => client.billingSp === billingSp);
+    const atmCashPrefixes = matchedClient?.sysPrinsPrefixes || [];
+
+    setSelectedData((prev) => ({
+      ...prev,
+      ...rowData,
+      sysPrinsPrefixes: atmCashPrefixes,
+    }));
   };
 
   return (
     <CRow className="align-items-stretch" style={{ height: 'calc(100vh - 100px)' }}>
       {/* Left: ClientInformation spans full height */}
       <CCol xs={4}>
-          <ClientInformation onRowClick={handleRowClick} />
+        <ClientInformation onRowClick={handleRowClick} />
       </CCol>
 
       {/* Right: stacked tab section and sysprin */}
       <CCol xs={8} className="d-flex flex-column">
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <CCard className="mb-3 flex-grow-1">
-          <CTabs activeItemKey="clientInformation">
-                <CTabList variant="pills">
-                  <CTab itemKey="clientInformation">Client Information</CTab>
-                  <CTab itemKey="clientATMCashPrefixes">Client ATM/Cash Prefixes</CTab>
-                  <CTab itemKey="clientEmailSetup">Client Email Setup</CTab>
-                  <CTab itemKey="clientReports">Client Reports</CTab>
-                </CTabList>
-                <CTabContent>
-                  <CTabPanel className="p-3" itemKey="clientInformation">
-                    <ClientInformationContent selectedData={selectedData} />
-                  </CTabPanel>
-                  <CTabPanel className="p-3" itemKey="clientATMCashPrefixes">
-                    <ClientATMCashPrefixes />
-                  </CTabPanel>
-                  <CTabPanel className="p-3" itemKey="clientEmailSetup">
-                    <ClientEmailSetup />
-                  </CTabPanel>
-                  <CTabPanel className="p-3" itemKey="clientReports">
-                    <ClientReport />
-                  </CTabPanel>
-                </CTabContent>
-              </CTabs>
+            <CTabs activeItemKey="clientInformation">
+              <CTabList variant="pills">
+                <CTab itemKey="clientInformation">Client Information</CTab>
+                <CTab itemKey="clientATMCashPrefixes">Client ATM/Cash Prefixes</CTab>
+                <CTab itemKey="clientEmailSetup">Client Email Setup</CTab>
+                <CTab itemKey="clientReports">Client Reports</CTab>
+              </CTabList>
+              <CTabContent>
+                <CTabPanel className="p-3" itemKey="clientInformation">
+                  <ClientInformationContent selectedData={selectedData} />
+                </CTabPanel>
+                <CTabPanel className="p-3" itemKey="clientATMCashPrefixes">
+                  <ClientATMCashPrefixes selectedData={selectedData} />
+                </CTabPanel>
+                <CTabPanel className="p-3" itemKey="clientEmailSetup">
+                  <ClientEmailSetup />
+                </CTabPanel>
+                <CTabPanel className="p-3" itemKey="clientReports">
+                  <ClientReport />
+                </CTabPanel>
+              </CTabContent>
+            </CTabs>
           </CCard>
           <CCard>
-              <SysPrin />
+            <SysPrin />
           </CCard>
         </div>
       </CCol>

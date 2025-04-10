@@ -4,9 +4,7 @@ import {
   CFormCheck,
   CButton,
   CCard,
-  CCardBody,
-  CCardHeader,
-  CCardTitle,
+  CCardBody
 } from '@coreui/react'
 
 import TextField from '@mui/material/TextField'
@@ -21,6 +19,13 @@ import '../../../scss/sys-prin-configuration/client-information.scss'
 const ClientInformationContent = ({ selectedData }) => {
   const [reportBreaks, setReportBreaks] = React.useState('')
   const [searchType, setSearchType] = React.useState('')
+
+  React.useEffect(() => {
+    if (selectedData) {
+      setReportBreaks(String(selectedData.reportBreakFlag ?? ''))
+      setSearchType(String(selectedData.chLookUpType ?? ''))
+    }
+  }, [selectedData])
 
   return (
     <CForm>
@@ -116,9 +121,9 @@ const ClientInformationContent = ({ selectedData }) => {
           {/* Fax + Checkboxes + Moved Reports Breaks */}
           {[
             { id: 'client-active', label: 'Client Active', value: selectedData.active },
-            { id: 'sysprin-active', label: 'SYS/PRIN Active', value: selectedData.sysPrinActive },
-            { id: 'positive-reporting', label: 'Positive Reporting', value: selectedData.positiveReporting },
-            { id: 'sub-client', label: 'Sub Client', value: selectedData.subClient },
+            { id: 'sysprin-active', label: 'SYS/PRIN Active', value: selectedData.sysPrinActive === true || selectedData.sysPrinActive === 'Y' },
+            { id: 'positive-reporting', label: 'Positive Reporting', value: selectedData.positiveReports },
+            { id: 'sub-client', label: 'Sub Client', value: selectedData.subClientInd },
             { id: 'amex-issued', label: 'Check here: if American Express Issued', value: selectedData.amexIssued },
           ].map((item, idx) => (
             <Box key={item.id} sx={{ mb: 3, display: 'flex', gap: 2 }}>
@@ -129,7 +134,7 @@ const ClientInformationContent = ({ selectedData }) => {
                     variant="outlined"
                     fullWidth
                     size="small"
-                    value={selectedData.billingSysPin}
+                    value={selectedData.billingSp || ''}
                     InputProps={{ readOnly: true }}
                     InputLabelProps={{ shrink: true }}
                   />
@@ -140,7 +145,7 @@ const ClientInformationContent = ({ selectedData }) => {
                     variant="outlined"
                     fullWidth
                     size="small"
-                    value={selectedData.phone}
+                    value={selectedData.phone || ''}
                     InputProps={{ readOnly: true }}
                     InputLabelProps={{ shrink: true }}
                   />
@@ -155,9 +160,9 @@ const ClientInformationContent = ({ selectedData }) => {
                       label="Reports Breaks"
                       onChange={(e) => setReportBreaks(e.target.value)}
                     >
-                      <MenuItem value="">None</MenuItem>
-                      <MenuItem value="by-client">System</MenuItem>
-                      <MenuItem value="by-date">Sys/Prin</MenuItem>
+                      <MenuItem value="0">None</MenuItem>
+                      <MenuItem value="1">System</MenuItem>
+                      <MenuItem value="2">Sys/Prin</MenuItem>
                     </Select>
                   </FormControl>
                 )}
@@ -172,9 +177,9 @@ const ClientInformationContent = ({ selectedData }) => {
                       onChange={(e) => setSearchType(e.target.value)}
                     >
                       <MenuItem value=""></MenuItem>
-                      <MenuItem value="id">Standard</MenuItem>
-                      <MenuItem value="name">Amex-AS400</MenuItem>
-                      <MenuItem value="state">AS400</MenuItem>
+                      <MenuItem value="0">Standard</MenuItem>
+                      <MenuItem value="1">Amex-AS400</MenuItem>
+                      <MenuItem value="2">AS400</MenuItem>
                     </Select>
                   </FormControl>
                 )}
@@ -184,7 +189,7 @@ const ClientInformationContent = ({ selectedData }) => {
                     variant="outlined"
                     fullWidth
                     size="small"
-                    value={selectedData.fax || ''}
+                    value={selectedData.faxNumber || ''}
                     InputProps={{ readOnly: true }}
                     InputLabelProps={{ shrink: true }}
                   />
@@ -214,4 +219,4 @@ const ClientInformationContent = ({ selectedData }) => {
   )
 }
 
-export default ClientInformationContent;
+export default ClientInformationContent

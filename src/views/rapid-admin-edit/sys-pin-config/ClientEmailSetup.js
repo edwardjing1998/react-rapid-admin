@@ -18,20 +18,9 @@ const EmailRecipientsCard = () => {
   const [emailServer, setEmailServer] = useState('')
   const [isActive, setIsActive] = useState(false)
   const [isCC, setIsCC] = useState(false)
-  const [options, setOptions] = useState([
-    'user1@example.com',
-    'user2@example.com',
-    'user3@example.com',
-    'user4@example.com',
-    'user5@example.com',
-    'user6@example.com',
-    'user7@example.com',
-    'user8@example.com',
-    'user9@example.com',
-    'user10@example.com',
-  ])
+  const [options, setOptions] = useState([])
 
-  const emailServers = ['Exchange', 'Gmail', 'Outlook', 'Yahoo']
+  const emailServers = ['Omaha-SMTP Server (uschaappsmtp.1dc.com)', 'Cha-SMTP Server (uschaappsmtp.1dc.com)']
 
   const handleChange = (selectedOptions) => {
     const values = Array.from(selectedOptions).map((opt) => opt.value)
@@ -51,6 +40,58 @@ const EmailRecipientsCard = () => {
     setName('')
     setEmailAddress('')
     setIsCC(false)
+  }
+
+  const handleAdd = () => {
+    if (!emailAddress.trim()) return
+
+    const newEntry = emailAddress.trim()
+    if (!options.includes(newEntry)) {
+      setOptions((prev) => [...prev, newEntry])
+    }
+
+    setSelectedRecipients((prev) => [...prev, newEntry])
+    setEmailAddress('')
+  }
+
+  const handleRemove = () => {
+    if (selectedRecipients.length === 0) return
+
+    setOptions((prev) => prev.filter((opt) => !selectedRecipients.includes(opt)))
+    setSelectedRecipients([])
+  }
+
+  const handleSave = async () => {
+    const payload = {
+      recipients: selectedRecipients,
+      name,
+      emailAddress,
+      emailServer,
+      isActive,
+      isCC,
+    }
+
+    try {
+      const response = await fetch('/api/emailSetup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        console.log('Saved successfully:', result)
+        alert('Saved successfully!')
+      } else {
+        console.error('Save failed:', response.status)
+        alert('Failed to save.')
+      }
+    } catch (error) {
+      console.error('Error during save:', error)
+      alert('An error occurred while saving.')
+    }
   }
 
   return (
@@ -158,10 +199,18 @@ const EmailRecipientsCard = () => {
                 <CButton color="info" onClick={handleNew}>
                   New
                 </CButton>
-                <CButton color="primary">Add</CButton>
-                <CButton color="danger">Remove</CButton>
-                <CButton color="success">Save</CButton>
-                <CButton color="secondary">Clear</CButton>
+                <CButton color="primary" onClick={handleAdd}>
+                  Add
+                </CButton>
+                <CButton color="danger" onClick={handleRemove}>
+                  Remove
+                </CButton>
+                <CButton color="success" onClick={handleSave}>
+                  Save
+                </CButton>
+                <CButton color="secondary">
+                  Clear
+                </CButton>
               </CCol>
             </CRow>
           </CCardBody>
